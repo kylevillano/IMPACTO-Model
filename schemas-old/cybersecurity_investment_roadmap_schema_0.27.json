@@ -1,0 +1,330 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://impacto.model/schemas/cybersecurity-roadmap-0.27.json",
+  "title": "Cybersecurity Investment Roadmap Schema (IMPACTO Model v0.27)",
+  "license": {
+    "name": "Creative Commons Attribution-ShareAlike 4.0 International License",
+    "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "copyright": "© 2025 Kyle Villano",
+    "project": "IMPACTO Model"
+  },
+  "type": "object",
+  "required": [
+    "version",
+    "roadmapStages"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "0.27",
+      "description": "Schema version (now set to '0.27')."
+    },
+    "organization": {
+      "type": "string",
+      "description": "Name of the organization or entity for this roadmap."
+    },
+    "useCase": {
+      "type": "string",
+      "description": "Description of the use case or product (e.g., the tool or initiative being implemented)."
+    },
+
+    "aiRoadmapPlanning": {
+      "type": "object",
+      "description": "Optional high-level AI planning fields, referencing the 'Leveraging JSON Schemas for AI-Assisted Roadmap Planning' guidance in IMPACTO.",
+      "properties": {
+        "approachUsed": {
+          "type": "string",
+          "description": "Which overall approach is used to consolidate domain maturity (e.g., 'lowest-domain', 'weighted-average', 'tiered-threshold', or 'two-step')."
+        },
+        "consolidatedStageValue": {
+          "type": "integer",
+          "description": "If an overall stage for the entire roadmap is computed, store it here (0–5)."
+        },
+        "keyGapsIdentified": {
+          "type": "array",
+          "description": "Key cross-domain gaps that prevent movement to a higher consolidated stage.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendationSummary": {
+          "type": "string",
+          "description": "Summary of recommended next steps or transformations needed to advance maturity and capability across all stages."
+        }
+      }
+    },
+
+    "roadmapStages": {
+      "type": "array",
+      "description": "Ordered list of roadmap stage objects from Stage 0 to the target stage, aligning with IMPACTO model stages.",
+      "items": {
+        "type": "object",
+        "required": [
+          "stage",
+          "name"
+        ],
+        "properties": {
+          "stage": {
+            "type": "integer",
+            "enum": [0, 1, 2, 3, 4, 5],
+            "description": "IMPACTO maturity stage (0=Purchased, 1=Ad Hoc, 2=Managed, 3=Formalized, 4=Data-Driven, 5=Optimizing)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Official stage name (e.g., 'Purchased', 'Ad Hoc Deployment', etc.)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Summary of this stage's typical characteristics or goals."
+          },
+          "objectives": {
+            "type": "string",
+            "description": "Key objectives to achieve in this stage."
+          },
+
+          "domainAlignment": {
+            "type": "object",
+            "description": "Optional domain-by-domain alignment for this stage, referencing the four IMPACTO domains (Business, People, Process, Technology).",
+            "properties": {
+              "Business": {
+                "type": "integer",
+                "description": "Stage-level score or maturity for Business domain (0–5)."
+              },
+              "People": {
+                "type": "integer",
+                "description": "Stage-level score or maturity for People domain (0–5)."
+              },
+              "Process": {
+                "type": "integer",
+                "description": "Stage-level score or maturity for Process domain (0–5)."
+              },
+              "Technology": {
+                "type": "integer",
+                "description": "Stage-level score or maturity for Technology domain (0–5)."
+              }
+            }
+          },
+
+          "recommendations": {
+            "type": "array",
+            "description": "AI or expert-assisted recommended actions to progress through or beyond this stage.",
+            "items": {
+              "type": "object",
+              "required": ["action"],
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "description": "A specific recommended action or investment step."
+                },
+                "priorityScore": {
+                  "type": "number",
+                  "description": "AI-generated priority score (higher = higher priority)."
+                },
+                "rationale": {
+                  "type": "string",
+                  "description": "Brief rationale explaining why this action is important."
+                },
+                "alignment": {
+                  "type": "object",
+                  "description": "Mapping of this action to MCF/CCF or other frameworks, clarifying how it advances maturity/capability.",
+                  "properties": {
+                    "MCF": {
+                      "type": "string",
+                      "description": "Maturity framework alignment (e.g., 'SOC-CMM Ad Hoc to Managed')."
+                    },
+                    "CCF": {
+                      "type": "string",
+                      "description": "Capability framework alignment (e.g., referencing MITRE ATT&CK or Zero Trust pillars)."
+                    },
+                    "frameworks": {
+                      "type": "array",
+                      "description": "List of external framework references relevant to this action.",
+                      "items": {
+                        "type": "object",
+                        "required": ["framework"],
+                        "properties": {
+                          "framework": {
+                            "type": "string"
+                          },
+                          "level": {
+                            "type": "string"
+                          },
+                          "section": {
+                            "type": "string"
+                          },
+                          "domain": {
+                            "type": "string"
+                          },
+                          "capability": {
+                            "type": "string"
+                          },
+                          "reference": {
+                            "type": "string"
+                          },
+                          "requirement": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "budgetEstimate": {
+            "type": "object",
+            "description": "Estimated budget needed for achieving this stage’s objectives.",
+            "properties": {
+              "amount": {
+                "type": "number",
+                "description": "Amount of budget estimated (numerical)."
+              },
+              "currency": {
+                "type": "string",
+                "default": "USD",
+                "description": "Currency for budget estimate."
+              },
+              "justification": {
+                "type": "string",
+                "description": "High-level justification for this budget estimate."
+              }
+            }
+          },
+          "ROI": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "description": "Return on Investment (qualitative or numeric) for this stage."
+          },
+          "riskRating": {
+            "type": "object",
+            "description": "Risk profile metrics at this stage, especially how it relates to purchased vs. actual risk profiles (PRP to ARP).",
+            "properties": {
+              "residualRisk": {
+                "type": "number",
+                "description": "A numeric or scaled representation of residual risk at this stage."
+              },
+              "riskReduction": {
+                "type": "number",
+                "description": "A numeric or percentage-based measure of risk reduction achieved by reaching this stage."
+              },
+              "PRPtoARP": {
+                "type": "string",
+                "description": "Qualitative summary comparing the purchased risk profile (PRP) to the actual risk profile (ARP)."
+              }
+            }
+          },
+          "maturityMapping": {
+            "type": "array",
+            "description": "Mappings from this stage to external maturity frameworks (MCF alignment).",
+            "items": {
+              "type": "object",
+              "properties": {
+                "framework": {
+                  "type": "string",
+                  "description": "Name of the external maturity framework."
+                },
+                "level": {
+                  "type": "string",
+                  "description": "Level (or tier) within that framework corresponding to this stage."
+                },
+                "details": {
+                  "type": "string",
+                  "description": "Any additional notes or crosswalk references."
+                }
+              }
+            }
+          },
+          "capabilityMapping": {
+            "type": "array",
+            "description": "Mappings from this stage to external capability frameworks (CCF alignment).",
+            "items": {
+              "type": "object",
+              "properties": {
+                "framework": {
+                  "type": "string",
+                  "description": "Name of the external capability framework."
+                },
+                "capability": {
+                  "type": "string",
+                  "description": "Specific capability label or ID within that framework."
+                },
+                "reference": {
+                  "type": "string",
+                  "description": "Any direct reference link or ID for the capability."
+                }
+              }
+            }
+          },
+          "integration": {
+            "type": "array",
+            "description": "Details of external tools/APIs integrated at this stage.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "type": "string",
+                  "description": "Name of the external tool or solution integrated."
+                },
+                "apiEndpoint": {
+                  "type": "string",
+                  "description": "API endpoint or relevant integration info."
+                },
+                "purpose": {
+                  "type": "string",
+                  "description": "Purpose for integrating this tool or API (e.g., threat intel feed, SSO)."
+                }
+              }
+            }
+          },
+          "compliance": {
+            "type": "array",
+            "description": "Compliance requirements or mandates addressed at this stage.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "framework": {
+                  "type": "string",
+                  "description": "Name of the compliance framework/regulation (e.g., HIPAA, PCI-DSS)."
+                },
+                "requirement": {
+                  "type": "string",
+                  "description": "Specific requirement or control ID from that framework."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of compliance or coverage (e.g., 'in progress', 'fully compliant')."
+                }
+              }
+            }
+          },
+          "presentation": {
+            "type": "object",
+            "description": "Presentation-friendly fields for this stage.",
+            "properties": {
+              "slideTitle": {
+                "type": "string",
+                "description": "Suggested title for a presentation slide summarizing this stage."
+              },
+              "summaryBullets": {
+                "type": "array",
+                "description": "Key bullet points summarizing the stage for communication or reporting.",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

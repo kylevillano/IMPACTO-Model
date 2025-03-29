@@ -1,0 +1,514 @@
+{
+  "version": "0.26",
+  "organization": "NCDIT",
+  "useCase": "AppGate SDP Zero Trust Implementation",
+  "roadmapStages": [
+    {
+      "stage": 0,
+      "name": "Purchased",
+      "description": "AppGate SDP acquired; default config in place, but minimal use. No formal processes or dedicated staff yet.",
+      "objectives": "Establish ownership and basic deployment in a test environment.",
+      "recommendations": [
+        {
+          "action": "Assign a product owner for AppGate SDP and define initial use cases",
+          "priorityScore": 9.0,
+          "rationale": "Ensure accountability to avoid 'shelfware' risk and plan pilot deployment",
+          "alignment": {
+            "MCF": "SOC-CMM Level 0 – Nonexistent",
+            "CCF": "Basic capability enabled (default install)",
+            "frameworks": [
+              { "framework": "CISA ZT Maturity Model v2.0", "level": "Traditional" },
+              { "framework": "NIST SP 800-207", "section": "2.1" }
+            ]
+          }
+        },
+        {
+          "action": "Enable baseline AppGate SDP in a lab/POC environment",
+          "priorityScore": 8.5,
+          "rationale": "Validate product functionality in a controlled setting before wider rollout",
+          "alignment": {
+            "MCF": "Ad Hoc process (no formal procedure)",
+            "CCF": "Default policy active, no custom rules",
+            "frameworks": [
+              { "framework": "SOC-CMM", "level": "Initial (Ad Hoc)" },
+              { "framework": "MITRE ATT&CK", "section": "Initial Access Techniques coverage minimal" }
+            ]
+          }
+        }
+      ],
+      "budgetEstimate": {
+        "amount": 50000,
+        "currency": "USD",
+        "justification": "License purchase (already incurred) and initial training materials"
+      },
+      "ROI": "The product is purchased but ROI is unrealized until deployment.",
+      "riskRating": {
+        "residualRisk": 9.5,
+        "riskReduction": 0.0,
+        "PRPtoARP": "No risk reduction realized yet; Actual Risk Profile (ARP) unchanged from baseline."
+      },
+      "maturityMapping": [
+        { "framework": "SOC-CMM", "level": "Level 0 (None)" },
+        { "framework": "CISA ZT Model", "level": "Traditional" }
+      ],
+      "capabilityMapping": [
+        { "framework": "CISA ZT Model", "capability": "Network – Traditional VPN in use, no ZTNA enforcement" },
+        { "framework": "MITRE ATT&CK", "capability": "No significant ATT&CK mitigations enabled", "reference": "M1030 (Network Segmentation) not implemented" }
+      ],
+      "integration": [
+        { "tool": "Procurement System", "purpose": "Record of purchase; no security tool integration yet" }
+      ],
+      "compliance": [
+        { "framework": "State Security Policy", "requirement": "Zero Trust adoption plan required", "status": "Not started" }
+      ],
+      "presentation": {
+        "slideTitle": "Stage 0 – Purchased (AppGate SDP)",
+        "summaryBullets": [
+          "Tool purchased, default settings, not operationalized",
+          "No staff assigned or processes defined",
+          "Risk reduction not yet realized (shelfware risk high)"
+        ]
+      }
+    },
+    {
+      "stage": 1,
+      "name": "Ad Hoc Deployment",
+      "description": "Initial pilot deployment of AppGate SDP for a small group. Basic integration done in an unstructured way.",
+      "objectives": "Get AppGate SDP functioning for a pilot use-case and gather lessons learned.",
+      "recommendations": [
+        {
+          "action": "Integrate AppGate SDP with Active Directory for identity-aware access",
+          "priorityScore": 9.5,
+          "rationale": "Enable basic Zero Trust by tying access to user identities (pilot group)",
+          "alignment": {
+            "MCF": "SOC-CMM Level 1 – Initial (ad hoc procedures)",
+            "CCF": "Identity-based access enabled for pilot",
+            "frameworks": [
+              { "framework": "CISA ZT Maturity Model v2.0", "level": "Initial (Identity Pillar)" },
+              { "framework": "NIST SP 800-207", "section": "3.1 Trust Algorithm" }
+            ]
+          }
+        },
+        {
+          "action": "Deploy AppGate SDP gateway for a subset of applications (pilot group access)",
+          "priorityScore": 8.8,
+          "rationale": "Start protecting one high-risk application with software-defined perimeter controls",
+          "alignment": {
+            "MCF": "Basic runbook drafted for pilot management",
+            "CCF": "Single gateway in place, default trust model",
+            "frameworks": [
+              { "framework": "MITRE ATT&CK", "capability": "Better control of remote access (partial mitigation of T1566 phishing initial access)" }
+            ]
+          }
+        },
+        {
+          "action": "Implement MFA for pilot users accessing AppGate SDP",
+          "priorityScore": 9.2,
+          "rationale": "Strengthen authentication as part of Zero Trust principles for pilot scope",
+          "alignment": {
+            "MCF": "Ad Hoc training given to pilot users",
+            "CCF": "MFA integration (capability increase)",
+            "frameworks": [
+              { "framework": "CISA ZT Model", "level": "Initial", "domain": "Identity & Device" }
+            ]
+          }
+        }
+      ],
+      "budgetEstimate": {
+        "amount": 20000,
+        "currency": "USD",
+        "justification": "Pilot deployment resources and initial integration work"
+      },
+      "ROI": "Early ROI: improved security for pilot users; insights for broader rollout",
+      "riskRating": {
+        "residualRisk": 8.5,
+        "riskReduction": 1.0,
+        "PRPtoARP": "Minor risk reduction achieved in pilot area (ARP slightly improved from PRP for pilot systems)."
+      },
+      "maturityMapping": [
+        { "framework": "SOC-CMM", "level": "Level 1 – Initial (Ad Hoc)" },
+        { "framework": "CISA ZT Model", "level": "Initial (some Zero Trust principles applied in pilot)" }
+      ],
+      "capabilityMapping": [
+        { "framework": "MITRE ATT&CK", "capability": "Partial coverage of lateral movement via isolated pilot", "reference": "M1030 (Network Segmentation) limited to pilot segment" },
+        { "framework": "NIST CSF", "capability": "Protect function improved for pilot systems" }
+      ],
+      "integration": [
+        { "tool": "Active Directory", "purpose": "Sync user identities for access control" },
+        { "tool": "MFA Service", "purpose": "Enforce MFA for pilot user logins to AppGate" },
+        { "tool": "SIEM", "purpose": "Collect pilot access logs (basic logging enabled)" }
+      ],
+      "compliance": [
+        { "framework": "NIST 800-53", "requirement": "AC-2 Account Management", "status": "Pilot in place (partial)" },
+        { "framework": "CJIS (FBI)", "requirement": "5.6 Advanced Auth. for Remote Access", "status": "Testing in pilot" }
+      ],
+      "presentation": {
+        "slideTitle": "Stage 1 – Ad Hoc Deployment",
+        "summaryBullets": [
+          "Pilot group onboarded with identity-based access",
+          "MFA implemented for pilot, basic policies in place",
+          "Processes still informal; initial log integration with SIEM"
+        ]
+      }
+    },
+    {
+      "stage": 2,
+      "name": "Managed Deployment",
+      "description": "Expanded AppGate SDP deployment with defined responsibilities and standard procedures. Integration with critical systems in progress.",
+      "objectives": "Formalize AppGate operations, cover more users/apps, and establish repeatable processes.",
+      "recommendations": [
+        {
+          "action": "Extend AppGate SDP to additional departments (cover 50% of users and applications)",
+          "priorityScore": 9.3,
+          "rationale": "Broaden protection to more assets to significantly reduce attack surface",
+          "alignment": {
+            "MCF": "SOC-CMM Level 2 – Managed (processes documented for onboarding new apps)",
+            "CCF": "Multi-site gateways, role-based access policies",
+            "frameworks": [
+              { "framework": "CISA ZT Maturity Model v2.0", "level": "Advanced (Network Pillar)", "domain": "Network" },
+              { "framework": "MITRE ATT&CK", "capability": "Mitigate lateral movement across departments", "reference": "M1030 (Network Segmentation)" }
+            ]
+          }
+        },
+        {
+          "action": "Integrate AppGate logs and events into centralized SIEM dashboard",
+          "priorityScore": 8.7,
+          "rationale": "Enable monitoring of SDP activity and incident response in SOC workflows",
+          "alignment": {
+            "MCF": "Use case playbooks created for SDP alerts",
+            "CCF": "Logging and basic analytics enabled",
+            "frameworks": [
+              { "framework": "SOC-CMM", "level": "Managed – Monitoring in place" },
+              { "framework": "NIST CSF", "domain": "Detect (DE)", "level": "Tier 2" }
+            ]
+          }
+        },
+        {
+          "action": "Implement device-posture checks for AppGate access (ensure connecting devices meet security baselines)",
+          "priorityScore": 8.9,
+          "rationale": "Improve trust decisions by verifying device compliance (antivirus, patches) before access",
+          "alignment": {
+            "MCF": "Security team trained on policy management",
+            "CCF": "Device context incorporated (capability boost)",
+            "frameworks": [
+              { "framework": "CISA ZT Model", "level": "Advanced", "domain": "Device" },
+              { "framework": "MITRE ATT&CK", "capability": "Mitigates use of compromised devices in access attempts" }
+            ]
+          }
+        },
+        {
+          "action": "Document standard operating procedures (SOPs) for adding new resources to AppGate SDP",
+          "priorityScore": 8.0,
+          "rationale": "Ensure repeatable process as deployment scales, reducing ad hoc errors",
+          "alignment": {
+            "MCF": "Processes formally documented (Managed stage)",
+            "CCF": "Operational playbook maturity",
+            "frameworks": [
+              { "framework": "ISO 27001", "requirement": "A.12.1.1 Security Operating Procedures", "level": "Implemented" }
+            ]
+          }
+        }
+      ],
+      "budgetEstimate": {
+        "amount": 75000,
+        "currency": "USD",
+        "justification": "Additional licenses for expanded user base and training for IT staff"
+      },
+      "ROI": "Reduction in legacy VPN usage (cost savings) and fewer security incidents in covered departments.",
+      "riskRating": {
+        "residualRisk": 6.5,
+        "riskReduction": 2.0,
+        "PRPtoARP": "Notable risk reduction as half the organization now under ZTNA controls; ARP moving closer to PRP expectations."
+      },
+      "maturityMapping": [
+        { "framework": "SOC-CMM", "level": "Level 2 – Managed" },
+        { "framework": "CISA ZT Model", "level": "Initial/Advanced (transitioning)", "details": "Moving from Initial to Advanced in multiple pillars" }
+      ],
+      "capabilityMapping": [
+        { "framework": "MITRE ATT&CK", "capability": "Lateral Movement largely constrained in ZTNA-protected segments", "reference": "T1021 Remote Services mitigated" },
+        { "framework": "NIST CSF", "capability": "DE.CM-7 Monitoring for unauthorized network connections in place" }
+      ],
+      "integration": [
+        { "tool": "SIEM (Splunk)", "apiEndpoint": "/api/v1/logs/appgate", "purpose": "Real-time log forwarding and correlation" },
+        { "tool": "ITSM", "purpose": "Incident tickets auto-generated from AppGate alerts" },
+        { "tool": "Vulnerability Scanner", "purpose": "Feed device posture data to AppGate policies" }
+      ],
+      "compliance": [
+        { "framework": "NIST 800-53", "requirement": "AC-17 Remote Access", "status": "Implemented for 50% systems" },
+        { "framework": "NIST 800-53", "requirement": "SC-10 Network Segmentation", "status": "Improving (segmentation across departments)" },
+        { "framework": "State Zero Trust Mandate", "requirement": "Phase 1 (50% resources under ZTNA)", "status": "Achieved" }
+      ],
+      "presentation": {
+        "slideTitle": "Stage 2 – Managed Deployment",
+        "summaryBullets": [
+          "Broader rollout (50% of users/apps) with standard procedures",
+          "Centralized monitoring of SDP events via SIEM",
+          "Device compliance checks enforced; documented onboarding process"
+        ]
+      }
+    },
+    {
+      "stage": 3,
+      "name": "Formalized Integration",
+      "description": "AppGate SDP is fully integrated into enterprise security operations. Zero Trust principles formalized across IT. Governance and metrics in place.",
+      "objectives": "Complete enterprise-wide adoption and integrate SDP into all security and IT workflows. Measure and align with business objectives.",
+      "recommendations": [
+        {
+          "action": "Cover 100% of enterprise applications and users with AppGate SDP (replace legacy VPN entirely)",
+          "priorityScore": 9.5,
+          "rationale": "Eliminate traditional access paths; enforce Zero Trust uniformly for all access, vastly reducing attack surface",
+          "alignment": {
+            "MCF": "SOC-CMM Level 3 – Defined (Zero Trust policy is part of security charter)",
+            "CCF": "Full coverage of capabilities (all connectors and gateways utilized)",
+            "frameworks": [
+              { "framework": "CISA ZT Maturity Model v2.0", "level": "Advanced (Enterprise-wide)" },
+              { "framework": "NIST SP 800-207", "section": "3.3 Enterprise Integration" }
+            ]
+          }
+        },
+        {
+          "action": "Implement continuous monitoring and automated response for suspicious access (SOAR integration with AppGate)",
+          "priorityScore": 9.0,
+          "rationale": "Reduce mean time to respond (MTTR) by automating containment of suspect sessions or accounts",
+          "alignment": {
+            "MCF": "Procedures for incident response involving SDP are formalized and tested (Defined)",
+            "CCF": "Integration with SOAR adds automation capability",
+            "frameworks": [
+              { "framework": "SOC-CMM", "level": "Defined – incident response playbooks" },
+              { "framework": "MITRE ATT&CK", "capability": "Quick containment of compromised accounts", "reference": "T1078 (Valid Accounts) response" }
+            ]
+          }
+        },
+        {
+          "action": "Establish governance board to review Zero Trust metrics (e.g., MTTD, trust score trends) monthly",
+          "priorityScore": 8.2,
+          "rationale": "Ensure leadership visibility and continuous improvement of ZTNA program through formal oversight",
+          "alignment": {
+            "MCF": "Quantitative metrics being used for decisions (entering quantitative management)",
+            "CCF": "Operational Intelligence (OI) feeds into capability adjustments",
+            "frameworks": [
+              { "framework": "CISA ZT Model", "level": "Advanced", "domain": "Analytics & Governance" },
+              { "framework": "FAIR Risk Model", "section": "Risk monitoring processes" }
+            ]
+          }
+        },
+        {
+          "action": "Train IT support and security staff on AppGate SDP advanced features (annual training program)",
+          "priorityScore": 8.0,
+          "rationale": "Build internal expertise to fully leverage product capabilities and maintain processes (reduces reliance on external support)",
+          "alignment": {
+            "MCF": "Staff skills mapped to NICE framework roles; regular training (Formalized)",
+            "CCF": "Advanced features like geo-fencing, risk-based policies enabled",
+            "frameworks": [
+              { "framework": "NICE Workforce Framework", "section": "OPS-XXX", "level": "Skillset updated" }
+            ]
+          }
+        }
+      ],
+      "budgetEstimate": {
+        "amount": 100000,
+        "currency": "USD",
+        "justification": "Enterprise license upgrade, SOAR integration costs, and staff training programs"
+      },
+      "ROI": "Higher ROI realized via legacy VPN decommission (cost savings) and reduced incident impact due to faster response.",
+      "riskRating": {
+        "residualRisk": 4.0,
+        "riskReduction": 2.5,
+        "PRPtoARP": "Significant risk reduction realized; ARP now much closer to the originally intended PRP as Zero Trust is enterprise-wide."
+      },
+      "maturityMapping": [
+        { "framework": "SOC-CMM", "level": "Level 3 – Defined" },
+        { "framework": "C2M2", "level": "MIL3 Achieved in relevant domains" },
+        { "framework": "CISA ZT Model", "level": "Advanced (all pillars implemented)" }
+      ],
+      "capabilityMapping": [
+        { "framework": "MITRE ATT&CK", "capability": "Multiple attack techniques proactively mitigated via dynamic policies", "reference": "e.g., T lateral movement techniques blocked" },
+        { "framework": "MITRE D3FEND", "capability": "D3-NET-1 Network Isolation in effect" }
+      ],
+      "integration": [
+        { "tool": "SOAR Platform", "apiEndpoint": "/api/v2/containment/appgate", "purpose": "Automated playbooks to quarantine suspicious user/device" },
+        { "tool": "Security Dashboard", "purpose": "Executive dashboard shows Zero Trust KPIs (from AppGate metrics)" },
+        { "tool": "Risk Management System", "purpose": "Feed ZTNA coverage and incidents into enterprise risk register" }
+      ],
+      "compliance": [
+        { "framework": "NIST 800-53", "requirement": "CA-7 Continuous Monitoring", "status": "Continuous monitoring via SDP & SIEM achieved" },
+        { "framework": "NIST 800-53", "requirement": "IR-4 Incident Handling", "status": "Automated response integrated" },
+        { "framework": "State ZT Strategy", "requirement": "Phase 2 (100% coverage, automation)", "status": "Achieved" }
+      ],
+      "presentation": {
+        "slideTitle": "Stage 3 – Formalized Integration",
+        "summaryBullets": [
+          "Enterprise-wide Zero Trust adoption (AppGate replaces VPN entirely)",
+          "SOAR integration for automated threat response",
+          "Formal governance & metrics tracking in place; staff fully trained"
+        ]
+      }
+    },
+    {
+      "stage": 4,
+      "name": "Data-Driven Solution",
+      "description": "Optimization through data: AppGate SDP policies and operations now driven by analytics and integrated threat intelligence. Regular risk benchmarking.",
+      "objectives": "Leverage data and analytics to refine policies dynamically and measure security improvements quantitatively.",
+      "recommendations": [
+        {
+          "action": "Implement adaptive policies (dynamic trust scores) using user and device behavior analytics",
+          "priorityScore": 9.1,
+          "rationale": "Continuously adjust access rules based on real-time risk indicators (e.g., anomalous behavior) to preempt threats",
+          "alignment": {
+            "MCF": "SOC-CMM Level 4 – Quantitatively Managed (data-driven decisions)",
+            "CCF": "Behavior analytics integrated into SDP (advanced capability)",
+            "frameworks": [
+              { "framework": "CISA ZT Maturity Model v2.0", "level": "Optimal (Analytics Pillar)", "domain": "Visibility & Analytics" },
+              { "framework": "MITRE ATT&CK", "capability": "Detecting techniques via anomaly (e.g., TA0005 Defense Evasion anomalies caught)" }
+            ]
+          }
+        },
+        {
+          "action": "Incorporate threat intelligence feeds to update AppGate SDP policies (block known bad IPs, threat IOCs)",
+          "priorityScore": 8.5,
+          "rationale": "Leverage global intel to preempt threats – an automated feed can harden access rules against latest threats",
+          "alignment": {
+            "MCF": "Processes for intel consumption and policy update are established (data-driven)",
+            "CCF": "Threat intel integration (new capability)",
+            "frameworks": [
+              { "framework": "NIST CSF", "domain": "Detect/Respond", "level": "Tier 4 Adaptive" },
+              { "framework": "MITRE ATT&CK", "capability": "Blocks known malicious C2 infrastructure", "reference": "T1071 (Application Layer Protocol) disruptions" }
+            ]
+          }
+        },
+        {
+          "action": "Perform quarterly risk quantification and ROI analysis for the SDP program (using FAIR or similar model)",
+          "priorityScore": 7.5,
+          "rationale": "Quantify the financial risk reduction and ROI from Zero Trust implementation to inform leadership and adjust investments",
+          "alignment": {
+            "MCF": "Risk management is quantitatively integrated (ALE/ALE calculations regular)",
+            "CCF": "Features usage tied to risk metrics (capability usage measured)",
+            "frameworks": [
+              { "framework": "FAIR", "section": "Risk Analysis", "level": "Quantified" },
+              { "framework": "IMPACTO Model", "section": "Risk Quantification integrated at Stage 4" }
+            ]
+          }
+        }
+      ],
+      "budgetEstimate": {
+        "amount": 30000,
+        "currency": "USD",
+        "justification": "Advanced analytics tools, threat intel subscriptions, risk analysis tools"
+      },
+      "ROI": "Demonstrable ROI: data-driven adjustments prevent incidents (estimated savings ~$200k/year) and optimize resource use.",
+      "riskRating": {
+        "residualRisk": 2.5,
+        "riskReduction": 1.5,
+        "PRPtoARP": "Risk is now continuously measured; ARP stays well-below PRP due to proactive adjustments."
+      },
+      "maturityMapping": [
+        { "framework": "SOC-CMM", "level": "Level 4 – Quantitatively Managed" },
+        { "framework": "CISA ZT Model", "level": "Optimal (near-optimal across pillars)" },
+        { "framework": "NIST CSF", "level": "Tier 4 (Adaptive)" }
+      ],
+      "capabilityMapping": [
+        { "framework": "MITRE ATT&CK", "capability": "Preemptive mitigation of emerging threats via TI integration", "reference": "M1049 (Antivirus/Endpoint Anti-malware) & others enhanced by network context" },
+        { "framework": "MITRE D3FEND", "capability": "D3-BAA-2 Behavior Anomaly Analysis fully utilized" }
+      ],
+      "integration": [
+        { "tool": "User Behavior Analytics (UBA)", "purpose": "Feed risk scores into AppGate for adaptive policy" },
+        { "tool": "Threat Intelligence Platform", "apiEndpoint": "/feed/appgate", "purpose": "Automated threat feed ingestion into SDP rules" },
+        { "tool": "Risk Analytics Dashboard", "purpose": "Show quantitative risk and ROI metrics for ZTNA program" }
+      ],
+      "compliance": [
+        { "framework": "Executive Order 14028", "requirement": "Zero Trust Architecture implementation", "status": "Metrics-driven phase" },
+        { "framework": "OMB M-22-09", "requirement": "Federal ZT metrics reporting", "status": "Automated via dashboard" }
+      ],
+      "presentation": {
+        "slideTitle": "Stage 4 – Data-Driven Solution",
+        "summaryBullets": [
+          "Adaptive policies with behavior analytics and threat intel",
+          "Continuous risk quantification and ROI measurement",
+          "Processes and policies auto-tuned based on data (quantitative management)"
+        ]
+      }
+    },
+    {
+      "stage": 5,
+      "name": "Optimizing Solution",
+      "description": "Continuous optimization and innovation. AppGate SDP and Zero Trust practices are fully ingrained, with ongoing improvements and business alignment. Security is a competitive enabler.",
+      "objectives": "Achieve a self-sustaining, continuously improving security program that keeps residual risk below tolerance and maximizes business value.",
+      "recommendations": [
+        {
+          "action": "Establish a continuous improvement program with AppGate (and other vendors) to adopt new features and best practices",
+          "priorityScore": 8.8,
+          "rationale": "Keep the solution at the cutting edge; regularly enhance capabilities as threats evolve (e.g., new AppGate features or policies)",
+          "alignment": {
+            "MCF": "SOC-CMM Level 5 – Optimizing (feedback loops with vendors and OI)",
+            "CCF": "All capabilities utilized; new ones rapidly assimilated",
+            "frameworks": [
+              { "framework": "IMPACTO OI Guide", "section": "Vendor Collaboration for Ongoing Improvement" },
+              { "framework": "MITRE ATT&CK", "capability": "Rapidly addresses new TTPs as ATT&CK evolves" }
+            ]
+          }
+        },
+        {
+          "action": "Conduct annual Zero Trust architecture review and penetration testing (purple teaming) to validate resilience",
+          "priorityScore": 8.5,
+          "rationale": "Proactively identify any gaps or drift; ensure the optimized state holds against advanced threats",
+          "alignment": {
+            "MCF": "Continuous feedback into process (Optimize)",
+            "CCF": "Robustness testing integrated into capability improvement",
+            "frameworks": [
+              { "framework": "MITRE ATT&CK", "capability": "Ensures coverage against latest ATT&CK techniques via testing" },
+              { "framework": "NIST CSF", "level": "Tier 4/Continuous", "domain": "Respond/Recover improvements" }
+            ]
+          }
+        },
+        {
+          "action": "Showcase metrics and success stories to leadership and public (position security as a business enabler)",
+          "priorityScore": 7.0,
+          "rationale": "Demonstrate the value of the investment – improved posture and compliance – bolstering continued support and funding",
+          "alignment": {
+            "MCF": "Security considered in business strategy (Optimized)",
+            "CCF": "Capability outcomes tied to business KPIs",
+            "frameworks": [
+              { "framework": "Business Strategy", "section": "Security as differentiator" }
+            ]
+          }
+        }
+      ],
+      "budgetEstimate": {
+        "amount": 50000,
+        "currency": "USD",
+        "justification": "Continuous training, annual pen-tests, and innovation fund for new features"
+      },
+      "ROI": "Security program fully optimized: clear risk reduction (residual risk < tolerance) and enablement of new initiatives (e.g., secure BYOD, cloud expansion) with minimal friction.",
+      "riskRating": {
+        "residualRisk": 1.0,
+        "riskReduction": 1.5,
+        "PRPtoARP": "Transformative: Actual risk consistently at or below target risk profile, indicating long-term ROI and security sustainability."
+      },
+      "maturityMapping": [
+        { "framework": "SOC-CMM", "level": "Level 5 – Optimizing" },
+        { "framework": "CISA ZT Model", "level": "Optimal (full maturity achieved)" },
+        { "framework": "NIST CSF", "level": "Tier 4 (Adaptive/Optimizing)" }
+      ],
+      "capabilityMapping": [
+        { "framework": "MITRE ATT&CK", "capability": "Continuous alignment with ATT&CK updates and D3FEND mitigations", "reference": "All relevant mitigations applied enterprise-wide" },
+        { "framework": "Zero Trust Core Principles", "capability": "Never Trust, Always Verify – fully ingrained in culture and tech" }
+      ],
+      "integration": [
+        { "tool": "Continuous Diagnostic & Mitigation (CDM)", "purpose": "Automated feeds ensure ongoing compliance and monitoring" },
+        { "tool": "Cloud Access Security Broker (CASB)", "purpose": "Extend ZTNA principles to cloud services seamlessly" }
+      ],
+      "compliance": [
+        { "framework": "ISO 27001", "requirement": "ISMS continuous improvement (Clause 10)", "status": "Embedded in org practice" },
+        { "framework": "State Audit", "requirement": "Annual security audit benchmarks ZT program", "status": "Exceeds requirements" }
+      ],
+      "presentation": {
+        "slideTitle": "Stage 5 – Optimized (Optimizing Solution)",
+        "summaryBullets": [
+          "Zero Trust program fully optimized and business-aligned",
+          "Continuous improvement with vendor partnerships and threat intelligence",
+          "Residual risk consistently below tolerance; security seen as business enabler"
+        ]
+      }
+    }
+  ]
+}

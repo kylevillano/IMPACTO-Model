@@ -1,0 +1,340 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IMPACTO Model Purchased Stage Data Model (v0.27)",
+  "description": "A JSON Schema (v0.27) for expressing purchased-stage information consistent with the IMPACTO Model, supporting AI-assisted roadmap planning. This covers the Purchased Stage (Stage 0) of IMPACTO, with expanded fields to facilitate domain alignment, risk quantification, and next-step recommendations.",
+  "type": "object",
+  "license": {
+    "name": "Creative Commons Attribution-ShareAlike 4.0 International License",
+    "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "copyright": "© 2025 Kyle Villano",
+    "project": "IMPACTO Model"
+  },
+  "properties": {
+    "stage": {
+      "type": "object",
+      "description": "The purchased stage information for the cybersecurity investment. This is Stage 0 in the IMPACTO Model.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Numeric identifier for the stage (0 for Purchased Stage)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the stage (e.g., 'Purchased')."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the stage, indicating that the solution is acquired but not yet operationalized."
+        }
+      },
+      "required": ["id", "name", "description"]
+    },
+    "MCF": {
+      "type": "object",
+      "description": "Maturity Classification Framework (MCF) captures process maturity and overall readiness at the Purchased Stage.",
+      "properties": {
+        "framework": {
+          "type": "string",
+          "description": "Name of the maturity framework used (e.g., 'CISA Zero Trust Maturity Model v2.0', 'SOC-CMM', etc.)."
+        },
+        "level": {
+          "type": "integer",
+          "description": "The numeric maturity level at the Purchased Stage (this value can vary based on assessment)."
+        },
+        "levelName": {
+          "type": "string",
+          "description": "A descriptive name for the maturity level (e.g., 'Traditional', 'Initial', 'Managed')."
+        },
+        "domainMaturity": {
+          "type": "object",
+          "description": "Maturity scores for each IMPACTO domain (Business, People, Process, Technology).",
+          "properties": {
+            "Business": {
+              "type": "integer",
+              "description": "Maturity score for the Business domain."
+            },
+            "People": {
+              "type": "integer",
+              "description": "Maturity score for the People domain."
+            },
+            "Process": {
+              "type": "integer",
+              "description": "Maturity score for the Process domain."
+            },
+            "Technology": {
+              "type": "integer",
+              "description": "Maturity score for the Technology domain."
+            }
+          },
+          "required": ["Business", "People", "Process", "Technology"]
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional commentary on the maturity status and assessment context."
+        }
+      },
+      "required": ["framework", "level", "levelName", "domainMaturity", "notes"]
+    },
+    "CCF": {
+      "type": "object",
+      "description": "Capability Classification Framework (CCF) documents the technical capabilities available in the purchased solution.",
+      "properties": {
+        "framework": {
+          "type": "string",
+          "description": "Name of the capability framework used (e.g., 'MITRE ATT&CK', 'ENISA', 'Zero Trust pillars', etc.)."
+        },
+        "utilizationLevel": {
+          "type": "integer",
+          "description": "Indicator of how much of the solution's capabilities are being utilized (0 indicates minimal usage)."
+        },
+        "utilizationDescription": {
+          "type": "string",
+          "description": "A description of the current capability utilization (e.g., 'Default configuration only; advanced features remain uncustomized and inactive')."
+        },
+        "featureUsage": {
+          "type": "array",
+          "description": "List of key features or capabilities and their usage status.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the capability or feature."
+              },
+              "status": {
+                "type": "string",
+                "description": "Status of the capability (e.g., 'enabled with default settings', 'partially configured', 'not implemented')."
+              }
+            },
+            "required": ["name", "status"]
+          }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional commentary on the technical capabilities at the Purchased Stage."
+        }
+      },
+      "required": ["framework", "utilizationLevel", "utilizationDescription", "featureUsage", "notes"]
+    },
+    "PCP": {
+      "type": "object",
+      "description": "Purchased Capability Profile (PCP) detailing the intended features and functionalities expected from the cybersecurity purchase.",
+      "properties": {
+        "capabilitiesPlanned": {
+          "type": "array",
+          "description": "A list of planned capabilities and features intended to be realized.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the planned capability."
+              },
+              "description": {
+                "type": "string",
+                "description": "Detailed description of what this capability is intended to achieve."
+              },
+              "frameworkMapping": {
+                "type": "object",
+                "description": "Mapping of this capability to one or more cybersecurity frameworks or categories.",
+                "additionalProperties": {
+                  "type": "array",
+                  "description": "An array of identifiers or categories from the referenced framework.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": ["name", "description", "frameworkMapping"]
+          }
+        },
+        "objectives": {
+          "type": "string",
+          "description": "The security functions and objectives the solution is expected to fulfill."
+        },
+        "notes": {
+          "type": "string",
+          "description": "General notes on the intended capabilities and their alignment with modern zero trust principles."
+        }
+      },
+      "required": ["capabilitiesPlanned", "objectives", "notes"]
+    },
+    "PRP": {
+      "type": "object",
+      "description": "Purchased Risk Profile (PRP) documenting the expected risk posture and anticipated risk reduction from the purchase.",
+      "properties": {
+        "riskMethodology": {
+          "type": "string",
+          "description": "The risk quantification method used (e.g., 'FAIR', 'NIST 800-30')."
+        },
+        "initialInherentRisk": {
+          "type": "string",
+          "description": "The baseline risk level before implementation (e.g., 'High', 'Critical')."
+        },
+        "expectedResidualRisk": {
+          "type": "string",
+          "description": "The risk level expected after the solution is operationalized (e.g., 'Medium')."
+        },
+        "expectedRiskReduction": {
+          "type": "string",
+          "description": "A qualitative or quantitative description of the risk reduction anticipated (e.g., '40-50% reduction')."
+        },
+        "assumptions": {
+          "type": "string",
+          "description": "Key assumptions regarding integration, staff training, and process formalization."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional commentary on how the risk profile was derived."
+        }
+      },
+      "required": ["riskMethodology", "initialInherentRisk", "expectedResidualRisk", "expectedRiskReduction", "assumptions", "notes"]
+    },
+    "POC": {
+      "type": "object",
+      "description": "Projected Operating Context (POC) detailing the intended environment where the solution will operate.",
+      "properties": {
+        "enterpriseScope": {
+          "type": "string",
+          "description": "The enterprise or business unit scope for the solution (e.g., 'Global Retail Division')."
+        },
+        "organizationalScope": {
+          "type": "string",
+          "description": "The organizational unit responsible for the solution (e.g., 'Security Operations Center')."
+        },
+        "functionalScope": {
+          "type": "string",
+          "description": "The specific functions or processes the solution is intended to support (e.g., secure remote access for employees)."
+        },
+        "architectureAssumptions": {
+          "type": "string",
+          "description": "Assumptions regarding the technical architecture and deployment (e.g., hybrid cloud, on-premises log storage)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Comments on how the projected operating context aligns with the overall zero trust strategy."
+        }
+      },
+      "required": ["enterpriseScope", "organizationalScope", "functionalScope", "architectureAssumptions", "notes"]
+    },
+    "OI": {
+      "type": "object",
+      "description": "Operational Intelligence (OI) capturing any threat intelligence or insights available at the time of purchase.",
+      "properties": {
+        "threatIntelSources": {
+          "type": "array",
+          "description": "List of threat intelligence sources or feeds considered (often sparse at Stage 0).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "incidentLearnings": {
+          "type": "array",
+          "description": "Historical incident insights or lessons that informed the purchase.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "feedbackLoopPlanned": {
+          "type": "boolean",
+          "description": "Indicator whether a feedback mechanism is planned post-purchase."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes on the current state and future plans for operational intelligence."
+        }
+      },
+      "required": ["threatIntelSources", "incidentLearnings", "feedbackLoopPlanned", "notes"]
+    },
+
+    "aiRoadmapPlanning": {
+      "type": "object",
+      "description": "Fields to support AI-assisted roadmap planning, referencing the 'Leveraging JSON Schemas for AI-Assisted Roadmap Planning' section in the IMPACTO Model.",
+      "properties": {
+        "approachUsed": {
+          "type": "string",
+          "description": "Approach used for consolidating domain maturity (e.g., 'lowest-domain', 'weighted-average', 'tiered-threshold', or 'two-step')."
+        },
+        "nextRecommendedStage": {
+          "type": "integer",
+          "description": "The recommended next IMPACTO stage (1-5) for this investment based on domain data."
+        },
+        "keyGapsIdentified": {
+          "type": "array",
+          "description": "A list of domain or subdomain areas requiring improvement to advance maturity.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendationSummary": {
+          "type": "string",
+          "description": "Textual summary of AI-driven or expert-driven recommendations for improving maturity and capability."
+        }
+      },
+      "required": [
+        "approachUsed",
+        "nextRecommendedStage",
+        "keyGapsIdentified",
+        "recommendationSummary"
+      ]
+    },
+
+    "metadata": {
+      "type": "object",
+      "description": "Metadata for the data model, providing context, versioning, and framework alignments.",
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "The name of the model (e.g., 'IMPACTO')."
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Version of this JSON schema (e.g., '0.27')."
+        },
+        "stageDescription": {
+          "type": "string",
+          "description": "A high-level description of the Purchased Stage."
+        },
+        "domains": {
+          "type": "array",
+          "description": "The IMPACTO domains covered by the model (e.g., Business, People, Process, Technology).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "frameworkAlignments": {
+          "type": "array",
+          "description": "A list of cybersecurity frameworks or standards that inform the model (e.g., 'SOC-CMM', 'MITRE ATT&CK', 'CISA ZTMM v2.0', 'FAIR').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the schema was last updated (e.g., '2025-03-05')."
+        }
+      },
+      "required": [
+        "model",
+        "schemaVersion",
+        "stageDescription",
+        "domains",
+        "frameworkAlignments",
+        "lastUpdated"
+      ]
+    }
+  },
+  "required": [
+    "stage",
+    "MCF",
+    "CCF",
+    "PCP",
+    "PRP",
+    "POC",
+    "OI",
+    "metadata"
+  ],
+  "$comment": "This JSON Schema (v0.27) extends the previous 0.26 to align more closely with the IMPACTO Model and AI-driven roadmap planning."
+}

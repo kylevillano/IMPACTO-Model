@@ -1,0 +1,113 @@
+{
+  "version": "0.26",
+  "stage": {
+    "id": 0,
+    "name": "Purchased",
+    "description": "AppGate SDP acquired by NCDIT for statewide Zero Trust network access but not yet operationalized."
+  },
+  "MCF": {
+    "framework": "CISA Zero Trust Maturity Model v2.0",
+    "level": 1,
+    "levelName": "Traditional",
+    "domainMaturity": {
+      "Business": 0,
+      "People": 0,
+      "Process": 0,
+      "Technology": 0
+    },
+    "notes": "At this stage, NCDIT has procured AppGate SDP with a Traditional maturity level per CISA ZTMM v2.0. Formal processes, roles, and training remain unestablished."
+  },
+  "CCF": {
+    "framework": "MITRE ATT&CK (aligned with CISA ZTMM v2.0)",
+    "utilizationLevel": 0,
+    "utilizationDescription": "Default configuration only; advanced features remain uncustomized and inactive.",
+    "featureUsage": [
+      {
+        "name": "Microsegmentation",
+        "status": "enabled with default settings"
+      },
+      {
+        "name": "Identity-Based Access",
+        "status": "configured at basic level"
+      },
+      {
+        "name": "Context-Aware Policy Enforcement",
+        "status": "not implemented"
+      },
+      {
+        "name": "Mutual TLS Authentication",
+        "status": "enabled with default parameters"
+      }
+    ],
+    "notes": "AppGate SDP’s technical capabilities are present but effectively 'shelfware' until proper integration and training occur."
+  },
+  "PCP": {
+    "capabilitiesPlanned": [
+      {
+        "name": "Zero Trust Network Access",
+        "description": "Establishes secure, microsegmented, one-to-one session-based access to ensure that only authenticated users can reach specific resources.",
+        "frameworkMapping": {
+          "NIST SP 800-207": [
+            "ZTNA"
+          ],
+          "CISA ZTMM v2.0": [
+            "Networks - Traditional"
+          ]
+        }
+      },
+      {
+        "name": "Dynamic Policy Enforcement",
+        "description": "Enforces adaptive, context-based access policies using real-time identity and device posture information.",
+        "frameworkMapping": {
+          "NIST SP 800-207": [
+            "Adaptive Authentication"
+          ],
+          "CISA ZTMM v2.0": [
+            "Identity - Traditional"
+          ]
+        }
+      }
+    ],
+    "objectives": "To secure statewide remote access and reduce lateral movement risks by implementing a Zero Trust network access solution that aligns with both NIST SP 800-207 and CISA Zero Trust guidelines.",
+    "notes": "The PCP reflects NCDIT's intent to leverage AppGate SDP via established state procurement channels (e.g., GSA IT Schedule 70) to achieve a secure baseline."
+  },
+  "PRP": {
+    "riskMethodology": "FAIR",
+    "initialInherentRisk": "High",
+    "expectedResidualRisk": "Medium",
+    "expectedRiskReduction": "Approximately 40-50% reduction in lateral movement and unauthorized access incidents.",
+    "assumptions": "Assumes timely integration with NCDIT's identity management systems, followed by staff training and process formalization.",
+    "notes": "The PRP is based on theoretical risk reduction achieved through AppGate SDP's microsegmentation and adaptive access control, pending full operationalization."
+  },
+  "POC": {
+    "enterpriseScope": "North Carolina State Government",
+    "organizationalScope": "North Carolina Department of Information Technology (NCDIT)",
+    "functionalScope": "Secure remote access and Zero Trust network access across state agencies",
+    "architectureAssumptions": "AppGate SDP is to be deployed on-premises at state data centers with cloud integration for remote access; it will integrate with the NCID identity system and enforce multi-factor authentication.",
+    "notes": "The POC outlines NCDIT's vision for AppGate SDP as a key component of a statewide Zero Trust strategy."
+  },
+  "OI": {
+    "threatIntelSources": [],
+    "incidentLearnings": [],
+    "feedbackLoopPlanned": false,
+    "notes": "At the Purchased Stage, minimal operational intelligence is integrated. Plans for threat intel feeds and feedback mechanisms will follow post-deployment."
+  },
+  "metadata": {
+    "model": "IMPACTO",
+    "stageDescription": "Purchased Stage: AppGate SDP has been acquired but is not yet operational. Capabilities are at default settings; no formal processes are in place.",
+    "domains": [
+      "Business",
+      "People",
+      "Process",
+      "Technology"
+    ],
+    "frameworkAlignments": [
+      "CISA Zero Trust Maturity Model v2.0",
+      "SOC-CMM",
+      "MITRE ATT&CK",
+      "NIST SP 800-207",
+      "FAIR"
+    ],
+    "lastUpdated": "2025-02-28"
+  }
+}
