@@ -1,0 +1,252 @@
+{
+  "data": [
+    {
+      "TaskID": 1,
+      "TaskName": "Initial procurement and planning",
+      "StartDate": "2024-01-01",
+      "EndDate": "2024-03-31",
+      "Duration": 91,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "IT Team",
+          "resourceName": "IT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "OT Team",
+          "resourceName": "OT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "Security Governance",
+          "resourceName": "Security Governance",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 2,
+      "TaskName": "Expand deployment and policy tuning",
+      "StartDate": "2024-04-01",
+      "EndDate": "2024-06-30",
+      "Duration": 91,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "IT Team",
+          "resourceName": "IT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "OT Team",
+          "resourceName": "OT Team",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 3,
+      "TaskName": "Phased enforcement rollout",
+      "StartDate": "2024-07-01",
+      "EndDate": "2024-09-30",
+      "Duration": 92,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "IT Team",
+          "resourceName": "IT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "SOC Team",
+          "resourceName": "SOC Team",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 4,
+      "TaskName": "Full enforcement and integration",
+      "StartDate": "2024-10-01",
+      "EndDate": "2024-12-31",
+      "Duration": 92,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "IT Team",
+          "resourceName": "IT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "OT Team",
+          "resourceName": "OT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "SOC Team",
+          "resourceName": "SOC Team",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 5,
+      "TaskName": "Maturity improvements and fine-tuning",
+      "StartDate": "2025-01-01",
+      "EndDate": "2025-03-31",
+      "Duration": 90,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "IT Team",
+          "resourceName": "IT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "SOC Team",
+          "resourceName": "SOC Team",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 6,
+      "TaskName": "Resilience and incident response validation",
+      "StartDate": "2025-04-01",
+      "EndDate": "2025-06-30",
+      "Duration": 91,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "IT Team",
+          "resourceName": "IT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "OT Team",
+          "resourceName": "OT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "Red Team",
+          "resourceName": "Red Team",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 7,
+      "TaskName": "Governance and long-term strategy",
+      "StartDate": "2025-07-01",
+      "EndDate": "2025-09-30",
+      "Duration": 92,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "Executive Committee",
+          "resourceName": "Executive Committee",
+          "unit": 100
+        },
+        {
+          "resourceId": "IT/OT Leaders",
+          "resourceName": "IT/OT Leaders",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 8,
+      "TaskName": "Assessment and future roadmap planning",
+      "StartDate": "2025-10-01",
+      "EndDate": "2025-12-31",
+      "Duration": 92,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [
+        {
+          "resourceId": "IT Team",
+          "resourceName": "IT Team",
+          "unit": 100
+        },
+        {
+          "resourceId": "Executive Committee",
+          "resourceName": "Executive Committee",
+          "unit": 100
+        }
+      ],
+      "info": "",
+      "DurationUnit": "day"
+    }
+  ],
+  "resources": [
+    {
+      "resourceId": "Executive Committee",
+      "resourceName": "Executive Committee"
+    },
+    {
+      "resourceId": "IT Team",
+      "resourceName": "IT Team"
+    },
+    {
+      "resourceId": "IT/OT Leaders",
+      "resourceName": "IT/OT Leaders"
+    },
+    {
+      "resourceId": "OT Team",
+      "resourceName": "OT Team"
+    },
+    {
+      "resourceId": "Red Team",
+      "resourceName": "Red Team"
+    },
+    {
+      "resourceId": "SOC Team",
+      "resourceName": "SOC Team"
+    },
+    {
+      "resourceId": "Security Governance",
+      "resourceName": "Security Governance"
+    }
+  ],
+  "advanced": {
+    "workWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ]
+  }
+}
