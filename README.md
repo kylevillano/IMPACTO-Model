@@ -18,6 +18,20 @@ IMPACTO Model FAQs_v0_1.docx – Frequently Asked Questions.
 
 LICENSE.md – Licensing information under Creative Commons Attribution-ShareAlike 4.0 International.
 
+IMPACTO Assistant
+
+IMPACTO Assistant is a GPT-powered assistant created to operationalize the IMPACTO Model. It simplifies interactions, implementation, and continuous improvement of cybersecurity maturity and capability, empowering users to effectively leverage the model’s strategic insights.
+
+IMPACTO Assistant Capabilities:
+
+Interactive Q&A for better understanding and application of the IMPACTO Model.
+
+Automated guidance for interpreting model outputs and recommendations.
+
+Best-practice suggestions to streamline cybersecurity maturity and capability assessments.
+
+For detailed guidance on using IMPACTO Assistant, see IMPACTO Assistant Documentation.
+
 Purpose
 
 This repository aids cybersecurity leaders and practitioners in:
@@ -50,6 +64,8 @@ Explore the Use Case: Review IMPACTO Example Use Case_v_0_1.docx.
 
 Understand Key Concepts and FAQs: Check IMPACTO Model At a Glance_v0_1.docx and IMPACTO Model FAQs_v0_1.docx.
 
+Leverage IMPACTO Assistant: Utilize IMPACTO Assistant for operationalizing insights, available in IMPACTO Assistant Documentation.
+
 Review Licensing: Ensure compliance with LICENSE.md.
 
 Contributing
@@ -66,13 +82,7 @@ For major updates, please first open an issue to discuss.
 
 License
 
-© 2025 Kyle Villano
+© 2025 Kyle VillanoThis repository is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. Attribution is required for reuse or modifications.
 
-This repository is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. Attribution is required for reuse or modifications.
 
-Contact
-
-For questions or feedback, contact Kyle Villano at kyle@beaconite.io.
-
-IMPACTO Model Repository – Optimizing Cybersecurity Investments for Strategic Value
 
