@@ -1,0 +1,76 @@
+﻿{
+  "model_version": "0.1",
+  "service_name": "Xage Security OT Secure Remote Access",
+  "organization": "Global Manufacturing Inc. (GMI)",
+  "purchase_date": "2024-09-15",
+  "capabilities": [
+    {
+      "name": "Zero Trust Remote Access Gateway",
+      "description": "Provides identity-based, granular access to OT assets without exposing the broader network (replaces flat VPN access).",
+      "status": "enabled"
+    },
+    {
+      "name": "Multi-Factor Authentication (MFA) Integration",
+      "description": "Enforces MFA and single sign-on for remote sessions even on legacy OT systems lacking native support.",
+      "status": "enabled"
+    },
+    {
+      "name": "Unified Access Management",
+      "description": "Centralizes user and device authentication across IT and OT, supporting integration with Active Directory and role-based access control.",
+      "status": "enabled"
+    },
+    {
+      "name": "Comprehensive Session Logging",
+      "description": "Captures detailed logs of remote session activity and provides tamper-proof audit trails for compliance.",
+      "status": "enabled"
+    },
+    {
+      "name": "Device Posture Verification",
+      "description": "Checks the security posture of remote clients (OS patch level, antivirus) before granting OT access.",
+      "status": "planned"
+    }
+  ],
+  "initial_risk_score": 9,
+  "expected_risk_score": 4,
+  "operating_context": {
+    "environment": "Multi-site industrial OT (factory networks with Siemens, Rockwell, and Schneider Electric equipment)",
+    "user_count": 200,
+    "user_types": "Plant engineers, OT system integrators, third-party vendor technicians",
+    "compliance_requirements": [
+      "ISO 27001",
+      "IEC 62443",
+      "NIST CSF"
+    ]
+  },
+  "maturity": {
+    "current_level": 1,
+    "target_level": 4,
+    "model": "Internal 1-5 scale aligned with industrial cybersecurity best practices"
+  },
+  "AI_recommendations": [
+    {
+      "area": "training",
+      "recommendation": "Provide specialized training for OT personnel and IT staff on the Xage zero trust system and new access procedures",
+      "trigger": "OT staff or contractors attempting to bypass controls due to unfamiliarity",
+      "priority": "High"
+    },
+    {
+      "area": "policy",
+      "recommendation": "Develop strict access policies per user role and site, limiting vendor access to only required assets",
+      "trigger": "Initial assessments show overly broad access privileges for some user groups",
+      "priority": "High"
+    },
+    {
+      "area": "integration",
+      "recommendation": "Integrate Xage logs with the Security Operations Center (SIEM) for continuous monitoring",
+      "trigger": "Need for unified monitoring of OT remote access activities alongside IT security events",
+      "priority": "Medium"
+    },
+    {
+      "area": "feature",
+      "recommendation": "Enable device posture checks and automatic session termination on detecting insecure devices or anomalies",
+      "trigger": "Varied security hygiene of devices used by vendors and engineers for remote access",
+      "priority": "Medium"
+    }
+  ]
+}

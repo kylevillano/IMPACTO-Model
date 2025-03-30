@@ -1,0 +1,99 @@
+﻿{
+    "version": "0.1",
+    "stage": "Purchased",
+    "organization": "Example Port Authority (Fictional)",
+    "operational_context": {
+        "environment": "Large coastal port with both traditional IT networks and industrial control systems (cranes, cargo handling, gate control). The port handles high volume of container traffic and critical operations, relying on interconnected IT/OT infrastructure.",
+        "threat_scenario": "Recent assessments highlight risks of cyber-physical attacks. For example, a cyber attack could hijack a ship's navigation or a port control system, causing a large vessel to block the harbor entrance&#8203;:contentReference[oaicite:0]{index=0}. Such an incident could halt port operations for days or weeks&#8203;:contentReference[oaicite:1]{index=1}, posing safety and economic threats. The port recognizes that IT and OT convergence&#8203;:contentReference[oaicite:2]{index=2} means malware or intrusions could have real-world consequences on shipping and cargo movement."
+    },
+    "solutions": [
+        {
+            "name": "Airlock Digital (Application Allowlisting & System Hardening)",
+            "capabilities": [
+                {
+                    "feature": "Executable Allowlisting",
+                    "description": "Only allows pre-approved applications and code to run on endpoints, blocking execution of any unapproved or malicious binaries&#8203;:contentReference[oaicite:3]{index=3}. This prevents unknown malware (even 'never-before-seen' threats) from launching by default, removing a core avenue for attackers."
+                },
+                {
+                    "feature": "Policy-Based Application Control",
+                    "description": "Administrators create granular allowlisting policies tailored to the port's systems (e.g., different rules for cargo crane control servers vs. office PCs). Airlock supports grouping and bulk management of policies, making it feasible to enforce unique whitelists per operational context without excessive overhead&#8203;:contentReference[oaicite:4]{index=4}."
+                },
+                {
+                    "feature": "Script Control and Advanced Blocklisting",
+                    "description": "Airlock can control the execution of scripts and macros, preventing unauthorized scripts (such as PowerShell or Python scripts) from running unless explicitly allowed. It also provides blocklisting to complement the whitelist (e.g., to block known-bad scripts or binaries by hash or publisher)&#8203;:contentReference[oaicite:5]{index=5}, adding defense against common attack techniques."
+                },
+                {
+                    "feature": "Continuous File Monitoring and Logging",
+                    "description": "The solution continuously monitors and records all file execution events on protected machines&#8203;:contentReference[oaicite:6]{index=6}. Security teams gain complete visibility into what is running across the port's endpoints, which significantly improves detection and forensic capabilities. Any attempt to run unapproved software is logged (and blocked in enforcement mode), aiding in incident response and compliance reporting."
+                },
+                {
+                    "feature": "System Hardening & Contextual Control",
+                    "description": "Beyond simple whitelisting, Airlock offers system hardening features like parent-process rules&#8203;:contentReference[oaicite:7]{index=7}. This means it can restrict which programs are allowed to launch other programs or scripts (mitigating fileless attacks that misuse legitimate tools). Administrators can lock down utilities (e.g., preventing an unauthorized use of administrative tools like wmic.exe) to reduce abuse of built-in OS functionalities."
+                },
+                {
+                    "feature": "Deployment and Integration",
+                    "description": "Airlock Digital is deployable on both Windows and Linux systems, covering the port’s diverse environment&#8203;:contentReference[oaicite:8]{index=8}. It integrates with CrowdStrike Falcon, allowing the port to deploy Airlock's agent through the existing Falcon sensors and to pivot from Airlock console events to CrowdStrike's console for investigation&#8203;:contentReference[oaicite:9]{index=9}. This integration enables a faster and smoother rollout and a combined defense-in-depth approach."
+                }
+            ]
+        },
+        {
+            "name": "CrowdStrike Falcon (Endpoint Detection & Response)",
+            "capabilities": [
+                {
+                    "feature": "Next-Generation Antivirus & Malware Prevention",
+                    "description": "Falcon provides machine-learning-based malware detection and prevention on the endpoint, even for fileless or zero-day threats. It uses behavioral analysis to stop malware and exploits in real-time, complementing Airlock by catching any malicious activity that might attempt to run via allowed programs. CrowdStrike’s cloud-delivered intelligence ensures the port's endpoints are protected by the latest threat information&#8203;:contentReference[oaicite:10]{index=10}."
+                },
+                {
+                    "feature": "Behavioral Detection and Alerting",
+                    "description": "The Falcon agent continuously monitors system behavior (process launches, network connections, file modifications) and flags suspicious patterns. It can detect complex attack chains (e.g., an Office document spawning a script, then a backdoor) by analyzing the sequence of events&#8203;:contentReference[oaicite:11]{index=11}. Security analysts get detailed alerts with a process tree that shows the origin of the threat (what ran, what it did)&#8203;:contentReference[oaicite:12]{index=12}, enabling quick understanding of any incident."
+                },
+                {
+                    "feature": "Incident Response Actions",
+                    "description": "Beyond detection, Falcon enables active response: analysts can remotely isolate an infected machine from the network (\"network contain\") with one click&#8203;:contentReference[oaicite:13]{index=13}, stopping an attack's spread in the port network. They can also remove or quarantine malicious files. This is critical in a port setting to quickly contain threats before they impact safety-critical systems."
+                },
+                {
+                    "feature": "Threat Intelligence and AI Analytics",
+                    "description": "CrowdStrike Falcon leverages global threat intelligence and AI analytics (via the Threat Graph database) to correlate events and identify known adversary techniques. It can decode obfuscated scripts automatically&#8203;:contentReference[oaicite:14]{index=14} and provide context on the threat (such as known threat actor or malware family). These insights help the port's security team prioritize and understand incidents, and they complement Airlock's preventative stance with rich investigative data."
+                },
+                {
+                    "feature": "Platform and Integration",
+                    "description": "Falcon's single lightweight agent architecture means minimal performance impact on port systems even as it delivers multiple capabilities (prevention, detection, response)&#8203;:contentReference[oaicite:15]{index=15}. The platform’s openness allows integration with tools like Airlock (as via the CrowdStrike Store) to extend functionality. In this deployment, CrowdStrike acts as both a shield and an enabler: it guards endpoints and also facilitates the deployment of the allowlisting agent and provides a unified view of endpoint security events."
+                }
+            ]
+        }
+    ],
+    "initial_risk_posture": {
+        "description": "Before these solutions, the port’s cybersecurity relied on basic measures (antivirus on IT systems, minimal security on OT devices, firewall at network perimeter). Several risks were identified:\n- **Malware infection risk:** High. Many endpoint systems, including operator workstations and shipping office PCs, were susceptible to malware or ransomware. A successful malware attack could pivot into OT networks or disrupt the logistics software.\n- **Unauthorized software and insider threat:** Users or contractors could unintentionally or maliciously execute unapproved software or USB-borne programs on critical systems, as no strict allowlisting was in place.\n- **Visibility and response:** Limited. If an incident occurred, the team might not quickly detect it, especially in OT segments, leading to delayed response. An attacker could maintain presence for a long time undetected.\nOverall, the port’s risk posture was **High**, with the potential for a cyber incident to cause physical safety issues or significant downtime. This aligns with observations that an attack on port technology could have serious physical and economic impacts&#8203;:contentReference[oaicite:16]{index=16}&#8203;:contentReference[oaicite:17]{index=17}. The need for improvement was critical to protect both IT and OT assets.",
+        "overall_rating": "High Risk"
+    },
+    "expected_risk_posture": {
+        "description": "With Airlock Digital and CrowdStrike Falcon implemented, the port expects a significantly improved security posture:\n- **Malware execution risk:** Dramatically reduced. Unknown or unwanted programs simply cannot run on allowlisted systems&#8203;:contentReference[oaicite:18]{index=18}, and any attempted execution is immediately blocked and logged. Common malware and ransomware would be effectively neutralized at entry.\n- **Advanced threat detection:** Greatly improved. If a sophisticated threat does manage to slip through (for instance, via an allowed application vulnerability), CrowdStrike Falcon’s behavioral analytics will detect the anomaly in real time and alert responders, preventing undetected lateral movement or data theft.\n- **System integrity:** Strongly enforced. Critical OT systems will only run vetted software, and any tampering or unauthorized change would be caught either by Airlock’s file monitoring or Falcon’s sensors, reducing the chance of sabotage or misuse of control systems.\n- **Response readiness:** High. The security team can respond in minutes with EDR containment capabilities, versus potentially hours or days before. This limits damage and downtime if an incident occurs.\nOverall, the risk posture moves to **Moderate/Low**. The likelihood of a mass malware outbreak or a cyber-physical incident is greatly diminished, and the port is much more resilient. While no defense is foolproof, these controls bring the risk down to a level in line with industry best practices for critical infrastructure. The port can confidently assert that it has a proactive security stance rather than a reactive one.",
+        "overall_rating": "Moderate (Targeting Low) Risk"
+    },
+    "compliance_requirements": [
+        {
+            "framework": "IMO Maritime Cyber Risk Management (IMO Resolution MSC.428(98) & ISM Code)",
+            "compliance_notes": "While the IMO resolution formally applies to ships, port facilities are encouraged to adopt similar cyber risk management practices&#8203;:contentReference[oaicite:19]{index=19}. By implementing strict allowlisting and continuous monitoring, the port addresses the IMO's call for robust cyber risk controls as part of safety management. The allowlisting solution enforces a \"no unauthorized software\" policy, and the EDR provides continuous anomaly detection, together supporting a strong cyber hygiene regime."
+        },
+        {
+            "framework": "IEC 62443 (Industrial Automation & Control Systems Security)",
+            "compliance_notes": "The combination of allowlisting and EDR helps meet multiple requirements of the IEC 62443 standard for control systems. For example, **SR 7.2 – Malware Protection:** Application whitelisting is a recommended method to prevent malware execution on industrial HMIs and servers&#8203;:contentReference[oaicite:20]{index=20}. **SR 7.3 – Security Monitoring:** The EDR's continuous monitoring and alerting meets the need for timely detection of security events. These tools also support the requirement for integrity of software by ensuring only approved applications run, supporting the concept of a defined security level for software execution control."
+        },
+        {
+            "framework": "NIST Cybersecurity Framework (CSF)",
+            "compliance_notes": "Using these solutions aligns with multiple CSF core functions. In **Identify/Protect**, Airlock enforces software asset control (CSF PR.DS-6: Integrity checking mechanisms, analogous to application control). In **Detect**, CrowdStrike Falcon provides continuous monitoring (DE.CM-1: monitor system and network to detect potential cybersecurity events). In **Respond/Recover**, the organization has defined incident response processes bolstered by Falcon's response capabilities (RS.MI-1: incidents are contained, and improvements are made). Overall, the port’s implementation advances its maturity in the CSF by moving from ad-hoc controls to a standardized, managed process."
+        },
+        {
+            "framework": "CIS Critical Security Controls (v8)",
+            "compliance_notes": "The port's new tools directly address several of the CIS top controls. **Control 2: Inventory and Control of Software Assets** – Airlock ensures only authorized software is allowed, effectively maintaining a continuous inventory of approved applications. **Control 5: Malware Defenses** – Both Airlock and Falcon provide layered malware protection (whitelisting unknown binaries and detecting behavioral indicators). **Control 8: Audit Log Management** – Airlock and Falcon both log security-relevant events (blocked executions, alerts), which can be aggregated for analysis. Adopting these tools demonstrates the port’s commitment to foundational cyber hygiene as per CIS guidelines."
+        }
+    ],
+    "AI_recommendations": [
+        "Leverage phased implementation: The AI suggests initially deploying Airlock in 'audit' mode (monitoring only) for a learning period. This allows collection of baseline application data and tuning of policies without disrupting operations&#8203;:contentReference[oaicite:21]{index=21}. Once the whitelist is refined, shift to enforcement mode to block anomalies. This phased approach will minimize impact on the port’s 24/7 operations.",
+        "Conduct staff training and drills: Introduce the new security controls to both IT and OT staff through targeted training. AI recommends interactive workshops where users learn how legitimate applications are whitelisted and what to do if something is blocked inadvertently. Regular drills (like simulated malware infections) will ensure the response team can effectively use CrowdStrike Falcon’s containment and investigation features in a crisis.",
+        "Integrate systems for holistic monitoring: To maximize defense-in-depth, integrate Airlock's logs with the CrowdStrike Falcon platform and the Security Operations Center’s SIEM. AI tools can correlate allowlisting violations with EDR alerts to identify potential attack attempts that were blocked. For instance, if Airlock blocks a script and Falcon simultaneously flags unusual behavior on the host, it could indicate a thwarted attack, prompting further investigation.",
+        "Optimize change management: The AI recommends updating the port’s change management process to incorporate allowlisting maintenance. Before deploying any new software or updates on operational systems, that software should be vetted and added to Airlock’s allowed list. Similarly, deprecated software should be removed from the whitelist. This ensures that security keeps up with operational changes and avoids unnecessary blocks. Automating this workflow with AI (for example, auto-generating whitelist update requests when new software installations are detected in audit logs) can streamline the process.",
+        "Monitor user experience: Post-deployment, use AI-driven analytics to monitor how the controls affect user productivity. For example, track metrics like the number of blocked (but requested-as-needed) applications or support tickets related to access. If there are patterns (say a particular department frequently needs to run a new tool), the AI could recommend pre-approving that tool or finding a secure alternative. This helps maintain security without hindering the port’s efficiency.",
+        "Prepare for evolving threats: AI advises that the threat landscape is always evolving. It suggests scheduling periodic reviews (at least annually) of the risk posture with respect to emerging cyber threats to port operations. For instance, if new tactics to bypass allowlisting or novel ICS-focused malware appear, the AI will recommend updates (like enabling additional Falcon modules or tightening Airlock policies) to address those. Proactively adjusting the strategy will keep the port one step ahead of adversaries."
+    ]
+}

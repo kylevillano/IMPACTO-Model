@@ -1,0 +1,150 @@
+﻿{
+    "version": "0.1",
+    "milestones": [
+        {
+            "quarter": "2024 Q1",
+            "milestone": "Initial procurement and planning",
+            "activities": [
+                "Complete purchase of Airlock Digital and CrowdStrike Falcon; establish the project team and governance structure for the cybersecurity initiative.",
+                "Deploy CrowdStrike Falcon sensors (EDR agents) to all port authority IT endpoints and critical OT Windows systems, to gain immediate visibility into any existing threats or suspicious activities.",
+                "Install Airlock Digital on a small pilot group of systems in 'audit mode' (observation only) – for example, on a few office PCs and one crane control workstation – to begin compiling a baseline of allowed applications without enforcing restrictions yet.",
+                "Perform a comprehensive baseline security assessment of the port’s IT and OT environment. Document all critical assets, software in use, and current security gaps. Use insights from Falcon’s initial deployment (e.g., identifying outdated software or latent malware) to inform risk areas."
+            ],
+            "outcomes": [
+                "By the end of Q1, the port authority has full endpoint visibility on corporate networks via CrowdStrike Falcon. Early EDR data helped expose a few misconfigured systems and benign malware that was promptly remediated.",
+                "Airlock Digital’s audit-mode pilot provided an initial inventory of applications running on the selected endpoints. The security team identified some unnecessary software on those systems, which can be eliminated or blacklisted moving forward. The project has clear documentation of the pre-implementation risk posture, setting a baseline for improvement."
+            ],
+            "AI_insights": [
+                "If Falcon's deployment uncovers a high volume of malware or unauthorized software on certain systems in Q1, the AI recommends prioritizing those systems for earlier Airlock enforcement (to quickly clamp down on active threats). It also suggests isolating any critical systems found infected until cleaned and whitelisted.",
+                "AI notes that involving both IT and OT stakeholders from the outset is beneficial. It recommends scheduling cross-department meetings to discuss allowlisting policies early, to surface any operational software needs that must be accommodated. This reduces surprises later when enforcement begins."
+            ]
+        },
+        {
+            "quarter": "2024 Q2",
+            "milestone": "Expand deployment and policy tuning",
+            "activities": [
+                "Roll out Airlock Digital agents in audit mode to all remaining applicable systems across the port – this includes all user workstations, servers, and operational control systems running supported OS. Now every execution in the environment is being logged by Airlock, but not yet blocked, which greatly expands the application inventory.",
+                "Utilize Airlock’s bulk approval and trust features to accelerate whitelist creation&#8203;:contentReference[oaicite:22]{index=22}. For instance, automatically trust applications with known publishers (Microsoft, Siemens, etc.) and use Airlock’s VirusTotal integration to vet unknown binaries. This tuning process will rapidly shrink the list of untrusted executables.",
+                "Use the CrowdStrike-Airlock integration to streamline deployment and data correlation&#8203;:contentReference[oaicite:23]{index=23}. The team deploys the remaining Airlock agents via the CrowdStrike console, ensuring no endpoint is missed. They also begin correlating Airlock logs (e.g., attempted executions of not-yet-approved programs) with CrowdStrike detections to flag anything truly suspicious.",
+                "Conduct training sessions for IT support and OT engineers on the upcoming enforcement. They learn how to request new software approvals in Airlock and how to respond to EDR alerts. This prepares the workforce for the cultural shift to a default-deny application environment."
+            ],
+            "outcomes": [
+                "By the end of Q2, Airlock Digital is running in audit mode on 100% of targeted systems, feeding the central console with a comprehensive list of software observed. The allowlisting policy for the port is, at this stage, roughly 80% complete in terms of covering all necessary applications. Many previously unknown executables have been reviewed and either approved or flagged for removal.",
+                "The integration of EDR and allowlisting is yielding benefits: for example, the team noticed via CrowdStrike that a certain maintenance laptop was attempting to run a pirated software installer, which Airlock logged. This insight led to corrective action (security training for that user). No major security incidents occurred this quarter, and the groundwork is laid to safely turn on enforcement in stages."
+            ],
+            "AI_insights": [
+                "AI suggests that if there are still a large number of unknown or unapproved applications by mid-Q2, consider segmenting the environment by department or function for policy tuning. For example, work on whitelisting for administrative offices separately from industrial control systems. This modular approach can simplify decisions about what should be allowed in each context.",
+                "Noting the data from Falcon, the AI also recommends patching or upgrading any software that showed frequent alerts or potential vulnerabilities during the audit period. Reducing the attack surface (by updating or removing risky software) before enforcement will enhance the effectiveness of allowlisting and reduce future alert noise."
+            ]
+        },
+        {
+            "quarter": "2024 Q3",
+            "milestone": "Phased enforcement rollout",
+            "activities": [
+                "Begin enabling Airlock Digital in enforcement mode on a subset of systems that have well-vetted policies. Start with low-risk groups (e.g., office workstations or a backup control system) to test the enforcement in production. Gradually increase the enforcement scope as confidence grows.",
+                "Closely monitor the enforced systems using both Airlock and CrowdStrike Falcon. For any execution that Airlock blocks, verify if it was a false alarm (something that should be allowed) or a true threat. Use Falcon’s detailed telemetry to investigate blocked items; if benign, adjust the whitelist, if malicious, confirm that Falcon detected or prevented any follow-on behavior.",
+                "Maintain other systems in audit mode. For high-criticality systems (main crane control servers, etc.), wait until their policies have zero unknown executions for several weeks before switching to enforcement. This conservative approach ensures that critical operations are not disrupted.",
+                "Run an internal red-team exercise or simulation targeting an endpoint in enforcement. For example, attempt to execute a known ransomware sample or hacking tool on a test machine: it should be blocked by Airlock (if not whitelisted) and simultaneously trigger Falcon alerts. Use the results to improve incident response playbooks and to verify that alerts are being properly handled by the SOC."
+            ],
+            "outcomes": [
+                "By end of Q3, roughly 50% of the environment is now under Airlock enforcement, while the remainder is still in audit mode pending final tuning. This phased approach allowed the team to catch a few overlooked applications – for instance, an auxiliary port logistics app that initially wasn't in the whitelist caused a block on an employee PC; it was quickly noticed and added. No significant operational downtime occurred due to the cautious rollout.",
+                "Security-wise, the port saw immediate benefits on enforced systems: one attempted malware infection via a USB stick on an office PC was blocked outright by Airlock (the unknown .exe never executed), with Falcon confirming the attempt and logging the details of the malware. Meanwhile, on systems still in audit mode, Falcon continued to serve as a backstop, and there were no successful compromises. The combination of controls proved effective, as even in audit mode Airlock provided visibility that allowed preemptive action.",
+                "The exercise conducted showed that the joint Airlock-Falcon deployment stops attacks as intended. The team improved their response procedures as a result (e.g., tuning Falcon alerts to ensure the SOC is immediately notified of block events and not just detection events)."
+            ],
+            "AI_insights": [
+                "AI emphasizes using the data from this phased rollout to plan the final enforcement. It notes, for example, that if certain categories of software (like custom scripts for cargo operations) are causing many blocks in testing, those should be given special attention – either by adjusting policies or by providing additional training to users of those systems prior to enforcement.",
+                "If no incidents are occurring on the remaining audit-mode systems, AI suggests not waiting too long to enforce everywhere. The longer a system stays in audit-only, the longer it's potentially exposed. The AI recommends aiming for a short Q4 enforcement window for all systems, barring any critical issues, to maximize security as soon as practical."
+            ]
+        },
+        {
+            "quarter": "2024 Q4",
+            "milestone": "Full enforcement and integration",
+            "activities": [
+                "Switch Airlock Digital to enforcement mode on all in-scope systems by mid-Q4. At this point, every applicable endpoint and server at the port is locked down to run only approved software&#8203;:contentReference[oaicite:24]{index=24}. Continue to monitor carefully, but by now policies are well-tuned from the prior quarters’ data.",
+                "Integrate Airlock’s logs and CrowdStrike Falcon events into the centralized security monitoring systems (SIEM). Establish unified dashboards and alerts: for instance, an Airlock block event on a critical system generates an alert that the SOC can investigate alongside Falcon’s insight for the same host. This improves incident correlation and visibility.",
+                "Formalize the process for software change management. Any new application or update that needs to be introduced in the port’s environment must go through a security review and be added to the allowlist before deployment. Document this process and communicate it across IT and OT teams, ensuring everyone knows how to request new software and how long it might take (to set expectations and avoid workarounds).",
+                "Ensure all compliance documentation is updated. Map the newly implemented controls to the port’s required compliance frameworks (from IMO guidelines to national critical infrastructure protections). Prepare evidence (reports from Airlock showing only approved software runs, Falcon's incident logs) to demonstrate compliance in upcoming audits."
+            ],
+            "outcomes": [
+                "By the end of Q4, the port’s endpoint security has reached a steady state of \"default deny\" on all systems. The risk of common malware infection is largely eliminated: any attempt to execute an unauthorized file is blocked on the spot. This achieves a key objective of malware prevention for critical infrastructure environments&#8203;:contentReference[oaicite:25]{index=25}. In parallel, CrowdStrike Falcon continues to surveil the now smaller set of allowed activities, acting as a tripwire for any anomalous behavior within that allowed set.",
+                "The integration of allowlisting and EDR has matured. Analysts can see an Airlock block and immediately pivot to the Falcon console to get more context (thanks to cross-references in the alerts)&#8203;:contentReference[oaicite:26]{index=26}. Incident response drills show that the team can contain even advanced threats quickly—if a new attack somehow slips through by abusing a whitelisted application, Falcon’s behavior detection kicks in and the team can isolate the host in minutes. The port has not experienced a significant security incident since the project started, and management notes the improved security posture in annual reports."
+            ],
+            "AI_insights": [
+                "The AI observes that user support tickets related to application blocks spiked slightly right after full enforcement, but then trailed off as users adapted. It suggests implementing an AI-assisted user portal for software requests: when a user tries to run something not on the whitelist, they could be guided to a portal that automatically logs a request and provides them feedback if it's denied or when it will be allowed. This could further streamline operations while keeping the environment secure.",
+                "AI also recommends planning for continuous policy maintenance. Now that full enforcement is achieved, the model suggests scheduling periodic (e.g., monthly) AI-driven scans for any new binaries or changes in the environment that might need policy updates. Essentially, proactively catching when an update introduces a new executable and prompting the admins to whitelist or block, keeping the system current."
+            ]
+        },
+        {
+            "quarter": "2025 Q1",
+            "milestone": "Maturity improvements and fine-tuning",
+            "activities": [
+                "Conduct a thorough review of the allowlisting policies after the first quarter of full enforcement. Remove any obsolete entries and tighten rules where possible. For example, if certain applications were temporarily allowed broadly, consider restricting them to specific machines or user roles now that things have stabilized.",
+                "Enable advanced features of Airlock Digital to enhance security: implement parent-process whitelisting rules to ensure that even allowed scripts or programs can only be launched by approved parent applications&#8203;:contentReference[oaicite:27]{index=27}. This adds another layer of defense against fileless attacks or misuse of allowed tools.",
+                "Fine-tune CrowdStrike Falcon’s detection algorithms using the data from the past enforcement period. With fewer benign alerts (thanks to allowlisting reducing noise), adjust Falcon to be more sensitive to subtle signs of intrusion. For instance, focus on detecting any abuse of allowed applications (like if malware tries to inject into an approved process). Leverage CrowdStrike’s machine learning tuning options to improve signal-to-noise ratio.",
+                "Continue security awareness efforts: now that employees have experienced the new system for a few months, gather feedback and address any recurring issues. Reinforce the importance of not trying to bypass security (e.g., by using unauthorized tools) and highlight success stories where threats were blocked to illustrate the value of these measures."
+            ],
+            "outcomes": [
+                "Allowlisting policies are now highly refined. In this quarter, the team was able to narrow some rules (for example, limiting a database application to only run from its installation directory, which was allowed now that usage patterns are well-understood). The number of new software approval requests has decreased as most needs have been met and users plan ahead, indicating that the process is becoming routine.",
+                "Falcon’s alerts are now almost exclusively meaningful. The SOC notes that they might go days with zero alerts, and any that do appear prompt immediate investigation. For instance, an alert in Q1 flagged unusual memory usage in a whitelisted process – it turned out to be a new exploit attempt, which was caught and stopped. This confirms that with the baseline locked down, the security team can spend time on advanced threat hunting rather than putting out fires."
+            ],
+            "AI_insights": [
+                "AI suggests formally benchmarking the port’s security maturity at this point (e.g., via a third-party assessment or an internal audit against a cybersecurity framework). Given the improvements, the port might now qualify for a higher maturity level or security certifications, which could have benefits like lower cyber insurance premiums or improved stakeholder confidence.",
+                "It also advises looking into extending protections to any remaining gaps. If, for instance, certain legacy systems or devices couldn't have Airlock or Falcon agents (due to OS limitations), the AI recommends compensating controls for those – such as network isolation or monitored power-cycle whitelisting (for PLCs). Essentially, ensure no part of the operation is left unguarded. The AI can help identify these gaps by analyzing network and asset inventory data."
+            ]
+        },
+        {
+            "quarter": "2025 Q2",
+            "milestone": "Resilience and incident response validation",
+            "activities": [
+                "Orchestrate a full-scale incident response drill leveraging the new controls. Simulate a complex attack (for example, an insider plugs in an infected device that tries to deploy malware on an OT network while simultaneously a phishing email targets an office PC). The drill should test the team's ability to detect, contain, and recover using Airlock and Falcon – Airlock should block the malware on the OT device, Falcon should catch the phishing on the IT side, and the team should coordinate a unified response.",
+                "Implement additional integrity checks: configure Airlock’s file integrity monitoring (if available) or use its allowlisting data to flag if any critical binary or configuration file is altered unexpectedly. At the same time, use Falcon’s capability to alert on changes to critical system files or registries. This dual approach will help catch any stealthy attempts to tamper with systems (for example, an attacker tries to modify a whitelisted binary hoping to trick the allowlist).",
+                "Improve disaster recovery plans in light of allowlisting. Document the procedure for quickly recovering or rebuilding a system in a crisis: e.g., if a system becomes non-functional due to an unrelated issue, how to restore it and its allowlist profile quickly. Ensure backups of allowlist policies and Falcon configurations are in place off-site. This preparation guarantees that even if something catastrophic happens, the security controls can be restored alongside systems.",
+                "Engage an external security tester or use an autonomous AI-based pen-testing tool to challenge the controls. Have them attempt sophisticated bypass techniques (like memory-only attacks, or exploiting an allowed application). Use the findings to patch any holes – for instance, if they discover a legitimate but rarely used tool that was whitelisted could be exploited, consider adding additional monitoring on that tool’s usage or removing it from critical systems."
+            ],
+            "outcomes": [
+                "The incident response exercise in Q2 showed the port’s readiness. The simulated attack was detected and contained: Airlock blocked the USB malware on the OT machine, and Falcon caught the phishing payload on the IT PC before it did harm. The team managed to coordinate the response effectively, though the post-mortem identified a few procedural improvements (such as faster communication between IT and OT incident handlers). Overall, it proved that a cyber-physical attack can be mitigated with the current tools and processes.",
+                "New integrity monitoring in place added another safety net. For example, when a technician updated a PLC’s configuration, the change was flagged (expectedly) and reviewed. In another instance, the monitoring picked up an unexpected change in a less critical system’s configuration, leading to an investigation that discovered an IT admin had installed a new utility without following procedure. This was a benign incident, but the monitoring functioned as intended, catching any out-of-band changes. The port’s systems are not only locked down from execution, but now also under surveillance for unauthorized modifications."
+            ],
+            "AI_insights": [
+                "The AI recommends leveraging the success of the drill to refine playbooks. It suggests creating a knowledge base of attack patterns and the corresponding responses observed (for instance, how a blocked execution looks in Airlock vs. Falcon) so new team members can learn from past simulations. It also notes that the drill's outcome can be used to assure leadership and external stakeholders (like insurers or auditors) of the port’s improved cyber resiliency.",
+                "As the program matures, AI points out the opportunity to incorporate predictive analytics. With two years of data, it can start identifying subtle trends – e.g., certain times of year when more anomalies occur (perhaps due to seasonal workforce changes or updates). The AI could then alert the team ahead of those periods to heighten vigilance or patch certain systems. Essentially, moving from reactive and proactive to a predictive security posture."
+            ]
+        },
+        {
+            "quarter": "2025 Q3",
+            "milestone": "Governance and long-term strategy",
+            "activities": [
+                "Establish a formal cybersecurity governance committee within the port authority. This committee, comprising executives as well as IT/OT leadership, will review security status quarterly. In Q3, the inaugural meeting will review the outcomes of the past two years of improvements, set new KPIs (e.g., mean time to detect/respond, compliance audit scores), and ensure there's organizational support for maintaining the allowlisting/EDR program.",
+                "Deploy an AI-driven security dashboard that aggregates data from Airlock, CrowdStrike, and other sources (firewalls, etc.) to provide real-time risk indicators. This dashboard will be used by both the committee and the operations team to get a high-level overview of the port’s cyber health (for example, a gauge of \"blocked threats this month\" or \"systems out of compliance\").",
+                "Revisit compliance and regulatory requirements. With potential new regulations on the horizon (maritime or national cybersecurity mandates), proactively adjust policies. For instance, if a new guideline requires multi-factor authentication or stricter network access controls in ports, plan to integrate those with the existing framework. Ensure the allowlisting and EDR setup will support any such enhancements (they likely will, as they form a strong baseline).",
+                "Look at sharing insights with or aiding other ports and maritime partners. The committee can consider producing a brief report or presentation on lessons learned from this deployment, contributing to industry knowledge-sharing (many ports are facing similar threats). This could improve collaboration and also ensure the port stays informed about others’ best practices or incidents."
+            ],
+            "outcomes": [
+                "Cybersecurity governance is now part of the port’s normal operations. The Q3 committee meeting solidified support to keep investing in maintenance and upgrades. Key metrics presented showed a drastic reduction in security incidents compared to two years ago. The committee decided on a policy that any significant system change (new equipment, major software rollouts) must involve a security review, ensuring the lessons of this project carry forward.",
+                "The new AI dashboard provided an intuitive summary of security posture for leadership. In one instance, it highlighted a spike in blocked application attempts in one of the port’s departments, prompting an inquiry. It turned out a new intern was trying various unauthorized tools out of ignorance; the issue was quickly corrected, and it demonstrated the value of having such visibility even at the executive level. This data-driven oversight will help sustain momentum and accountability for cybersecurity."
+            ],
+            "AI_insights": [
+                "The AI notes that with robust controls in place, the human element (governance, culture) becomes the potential weaker link, so having this committee is crucial. It suggests that the committee schedule an annual review of emerging technologies – such as evaluating if new AI-based threat detection or perhaps next-gen allowlisting techniques could further enhance security – essentially keeping the port on the cutting edge. It can simulate cost-benefit analysis for proposed new tools to assist decision-making.",
+                "Another recommendation is to ensure knowledge continuity. AI suggests developing a training program or certification for internal staff on managing allowlisting and EDR in an OT environment, perhaps in partnership with a local university or training provider. This will mitigate risks of personnel turnover and ensure the program’s success is not tied to a few key individuals."
+            ]
+        },
+        {
+            "quarter": "2025 Q4",
+            "milestone": "Assessment and future roadmap planning",
+            "activities": [
+                "Perform a comprehensive security audit and risk assessment at the end of two years. Compare the current state to the initial state documented in 2024 Q1. Assess improvements in metrics like number of incidents, incident response time, and compliance audit results. Also, simulate the original threat scenario (from the CYBER-MAR case study) under the current security posture to validate that the risk of a similar event is indeed mitigated.",
+                "Compile the findings into an executive report. Highlight how the risk posture moved from high to low in key areas, and how compliance requirements are being met consistently. Note any areas that still need work or ongoing vigilance. This report will support continued investment and could be shared with insurance providers or regulators to demonstrate due diligence.",
+                "Plan the next multi-year cybersecurity roadmap. Building on the success, identify new goals – for example, extending allowlisting/EDR to cloud systems or containerized environments used by the port, integrating physical security systems (CCTV, access control) into the cyber monitoring for a unified safety view, or adopting threat intelligence sharing with other ports. Prioritize these initiatives and draft a high-level timeline.",
+                "Budget and resource allocation: use the results to justify budget needs for maintaining these capabilities and for any additional tools or staff. Ensure that knowledge from this project (configurations, playbooks, AI rules) is archived and transferable. Set a schedule for periodic technology review so that when Airlock or Falcon release new features, the port can evaluate and adopt them to continuously improve."
+            ],
+            "outcomes": [
+                "The final audit in Q4 confirmed the port’s cybersecurity posture is vastly improved. The once \"high\" risk of a cyber-induced port shutdown (like a ship blockade or ransomware outbreak) is now considered low. In fact, when simulating the case study’s attack scenario of a compromised ship attempting to disrupt port operations, the security measures in place either blocked the malicious actions or gave early warning to stop the attack in its tracks&#8203;:contentReference[oaicite:28]{index=28}. All compliance audits in this period passed without major findings.",
+                "The two-year initiative is considered a success by port leadership. They have green-lit a follow-on security plan that invests in maintaining these capabilities and adding new ones (such as enhanced network segmentation and secure remote access for ship-to-port data exchange). The culture at the port has shifted to be much more cyber aware – from executives down to operational staff, there’s an understanding of the importance of controls like allowlisting and EDR. This cultural change perhaps is the most significant long-term benefit, ensuring security remains a priority even as technology or threats evolve."
+            ],
+            "AI_insights": [
+                "The AI provides a final summary analysis: it notes that the defense-in-depth approach (combining strict allowlisting with intelligent EDR) has been effective at preventing the kind of cyber-physical incident the port feared. The initial risk (a major cyber-attack causing physical disruption) has been reduced to a very low probability through these measures. It emphasizes the importance of continuing this layered strategy.",
+                "Looking forward, the AI suggests the port authority keep embracing automation and AI in cybersecurity. As the environment grows (more IoT sensors, autonomous vehicles in the port, etc.), manual oversight won’t scale. The next roadmap should consider AI-driven anomaly detection for OT traffic and automated incident response playbooks. The AI also recommends staying connected with the maritime cybersecurity community to exchange threat intelligence, ensuring the port can preempt new attack techniques that might emerge."
+            ]
+        }
+    ]
+}

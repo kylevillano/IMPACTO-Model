@@ -1,0 +1,88 @@
+﻿{
+  "model_version": "0.1",
+  "service_name": "Xage Security OT Secure Remote Access",
+  "organization": "Global Manufacturing Inc. (GMI)",
+  "milestones": [
+    {
+      "name": "Deployment Planning & Pilot Implementation",
+      "timeline": "2024 Q4",
+      "category": "Deployment",
+      "description": "Plan the rollout and deploy Xage Secure Remote Access in a pilot environment (one manufacturing site) to validate connectivity and performance in the OT setting.",
+      "outcome": "Xage remote access operational in pilot plant; initial issues identified and addressed before company-wide rollout.",
+      "status": "planned"
+    },
+    {
+      "name": "Staff Training & Policy Development",
+      "timeline": "2025 Q1",
+      "category": "Training",
+      "description": "Conduct training sessions for IT and OT teams on using Xage SRA and collaboratively develop initial access policies tailored to GMI's OT environment.",
+      "outcome": "All relevant staff are proficient with the new system; baseline zero trust access policies defined and ready for enforcement.",
+      "status": "planned"
+    },
+    {
+      "name": "Enterprise-wide Rollout",
+      "timeline": "2025 Q2",
+      "category": "Deployment",
+      "description": "Extend deployment to all GMI manufacturing sites, on-board all facilities onto the Xage SRA platform and enforce use of the new remote access solution.",
+      "outcome": "Secure remote access available across all plants; legacy VPN or ad-hoc access methods phased out, achieving consistent security controls enterprise-wide.",
+      "status": "planned"
+    },
+    {
+      "name": "Identity & MFA Integration",
+      "timeline": "2025 Q3",
+      "category": "Integration",
+      "description": "Integrate Xage SRA with corporate identity providers (e.g., Active Directory) and enable multi-factor authentication for all OT remote access sessions.",
+      "outcome": "Unified identity management for OT access achieved; all remote sessions require MFA, significantly reducing risk of credential compromise.",
+      "status": "planned"
+    },
+    {
+      "name": "Enable Advanced Security Features",
+      "timeline": "2025 Q4",
+      "category": "Enhancement",
+      "description": "Activate additional Xage features such as device posture checks, automated session termination on anomalies, and route OT access logs to the SIEM.",
+      "outcome": "Improved security oversight and control: only compliant devices sustain access; suspicious sessions are automatically flagged or terminated; full visibility of OT remote access in the SOC.",
+      "status": "planned"
+    },
+    {
+      "name": "Incident Response Drill",
+      "timeline": "2026 Q1",
+      "category": "Exercise",
+      "description": "Conduct a simulated cyber incident (e.g., a compromised vendor account) to test incident response and the effectiveness of Xage controls in containing threats.",
+      "outcome": "Response procedures validated in a realistic scenario; any gaps in Xage policy configuration or incident handling are identified and remediated.",
+      "status": "planned"
+    },
+    {
+      "name": "Security Audit & Compliance Review",
+      "timeline": "2026 Q2",
+      "category": "Assessment",
+      "description": "Perform a comprehensive security audit of the Xage SRA deployment and ensure compliance with GMI's internal standards and industry frameworks (ISO 27001, IEC 62443).",
+      "outcome": "Audit confirms significant risk reduction and compliance; findings provide actionable improvements, if any, to further enhance the security posture.",
+      "status": "planned"
+    },
+    {
+      "name": "Maturity Assessment & Future Roadmap",
+      "timeline": "2026 Q3",
+      "category": "Assessment",
+      "description": "Evaluate the organization's OT security maturity after deploying Xage SRA for two years and define next steps (e.g., adopting additional Xage capabilities or other security controls).",
+      "outcome": "Maturity level meets or exceeds target; a new roadmap is developed for continuous improvement (such as extending zero trust to new facilities or integrating OT anomaly detection).",
+      "status": "planned"
+    }
+  ],
+  "maturity_assessment": {
+    "initial_level": 1,
+    "target_level": 4,
+    "framework": "Internal 1-5 maturity scale (5 = highest) aligned to GMI's OT security program"
+  },
+  "conditional_recommendations": [
+    {
+      "trigger": "Multiple unauthorized access attempts or policy denials detected in remote access logs",
+      "recommendation": "Conduct a targeted review of user access privileges and provide additional training on the remote access policies",
+      "rationale": "Frequent unauthorized attempts may indicate either malicious activity or user misunderstanding; tightening access rights or improving user knowledge can preempt potential breaches."
+    },
+    {
+      "trigger": "A critical new OT security threat or vulnerability (e.g., ICS-specific malware) emerges",
+      "recommendation": "Initiate an immediate security review and update Xage policies or apply patches to address the threat",
+      "rationale": "Rapidly addressing emerging threats ensures that the remote access infrastructure remains secure against the latest attack vectors."
+    }
+  ]
+}
