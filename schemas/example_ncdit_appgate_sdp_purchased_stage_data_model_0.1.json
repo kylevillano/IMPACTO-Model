@@ -1,0 +1,65 @@
+﻿{
+    "model_version": "0.1",
+    "service_name": "AppGate SDP",
+    "organization": "NCDIT",
+    "purchase_date": "2024-01-15",
+    "capabilities": [
+        {
+            "name": "Software-Defined Perimeter (ZTNA)",
+            "description": "Conceals network resources and grants adaptive access based on identity and context (Zero Trust Network Access).",
+            "status": "enabled"
+        },
+        {
+            "name": "Dynamic Posture Management",
+            "description": "Automatically adjusts user/device access privileges based on real-time device security posture and user context.",
+            "status": "planned"
+        },
+        {
+            "name": "Threat Intelligence Integration",
+            "description": "Incorporates external threat intelligence feeds to update access policies (e.g., blocking known malicious IPs or indicators).",
+            "status": "planned"
+        },
+        {
+            "name": "Comprehensive Audit Logging",
+            "description": "Provides detailed audit logs of user access and policy decisions for compliance reporting and SIEM analysis.",
+            "status": "enabled"
+        }
+    ],
+    "initial_risk_score": 8,
+    "expected_risk_score": 4,
+    "operating_context": {
+        "environment": "Hybrid (on-premises data centers + Azure cloud)",
+        "user_count": 5000,
+        "user_types": "Employees, Contractors (state agencies and external partners)",
+        "compliance_requirements": [
+            "CJIS",
+            "HIPAA",
+            "State Privacy Laws"
+        ]
+    },
+    "maturity": {
+        "current_level": 2,
+        "target_level": 4,
+        "model": "Internal 1-5 scale aligned with cybersecurity maturity benchmarks"
+    },
+    "AI_recommendations": [
+        {
+            "area": "training",
+            "recommendation": "Conduct specialized training for administrators on AppGate SDP and zero trust policies",
+            "trigger": "IT staff is unfamiliar with the new SDP technology",
+            "priority": "High"
+        },
+        {
+            "area": "feature",
+            "recommendation": "Enable and configure device posture check features for all users",
+            "trigger": "Many users connect with BYOD devices, posing varying security postures",
+            "priority": "Medium"
+        },
+        {
+            "area": "integration",
+            "recommendation": "Integrate AppGate SDP with threat intelligence feeds and SIEM",
+            "trigger": "High volume of emerging threats targeting government networks",
+            "priority": "Medium"
+        }
+    ]
+}

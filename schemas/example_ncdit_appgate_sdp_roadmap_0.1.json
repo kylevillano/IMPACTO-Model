@@ -1,0 +1,72 @@
+﻿{
+    "model_version": "0.1",
+    "service_name": "AppGate SDP",
+    "organization": "NCDIT",
+    "milestones": [
+        {
+            "name": "Admin & Security Staff Training",
+            "timeline": "2024 Q1",
+            "category": "Training",
+            "description": "Provide specialized training for network/security administrators on AppGate SDP usage and zero trust policies.",
+            "outcome": "Administrators are proficient in managing AppGate SDP and understand zero trust principles.",
+            "status": "planned"
+        },
+        {
+            "name": "Enable Device Posture Checks",
+            "timeline": "2024 Q2",
+            "category": "Integration",
+            "description": "Roll out the device security posture checking capability for all user devices and enforce compliance in access decisions.",
+            "outcome": "Increased device compliance; unmanaged or insecure devices are restricted, reducing risk of breach via compromised endpoints.",
+            "status": "planned"
+        },
+        {
+            "name": "Threat Intelligence Feed Integration",
+            "timeline": "2024 Q3",
+            "category": "Integration",
+            "description": "Connect AppGate SDP to external threat intelligence feeds and SIEM to dynamically update access policies based on emerging threats.",
+            "outcome": "Proactive defense in place; known malicious IPs or threat indicators are automatically blocked via SDP policies.",
+            "status": "planned"
+        },
+        {
+            "name": "Tabletop Security Drill",
+            "timeline": "2024 Q4",
+            "category": "Exercise",
+            "description": "Conduct a tabletop exercise (simulated breach scenario) to test AppGate SDP effectiveness and incident response procedures.",
+            "outcome": "Identified policy gaps and improvements in incident response; team is better prepared for real attack scenarios.",
+            "status": "planned"
+        },
+        {
+            "name": "Configuration Audit & Policy Tuning",
+            "timeline": "2025 Q1",
+            "category": "Review",
+            "description": "Perform a thorough configuration audit and policy review post-exercise to harden AppGate SDP settings and address any gaps found.",
+            "outcome": "Security policies refined and tightened based on findings; residual risk is further reduced after adjustments.",
+            "status": "planned"
+        },
+        {
+            "name": "Maturity Assessment & Next Steps",
+            "timeline": "2025 Q2",
+            "category": "Assessment",
+            "description": "Assess cybersecurity maturity improvement after one year of AppGate SDP deployment; plan next-phase improvements if needed.",
+            "outcome": "Maturity level increased to target; roadmap for continuous improvement (e.g., consider advanced analytics, expand zero trust to other areas) established.",
+            "status": "planned"
+        }
+    ],
+    "maturity_assessment": {
+        "initial_level": 2,
+        "target_level": 4,
+        "framework": "Internal 1-5 maturity scale (with 5 being optimal)"
+    },
+    "conditional_recommendations": [
+        {
+            "trigger": "Excessive access violations or user policy denials in logs",
+            "recommendation": "Schedule additional user training and awareness on access policies",
+            "rationale": "Frequent policy denials might indicate users attempting unauthorized access or misunderstanding new controls."
+        },
+        {
+            "trigger": "Emergence of a critical new threat/vulnerability relevant to network access",
+            "recommendation": "Initiate an out-of-cycle security review and apply necessary AppGate SDP policy updates or patches",
+            "rationale": "Addressing critical threats promptly ensures the network remains secure and leverages SDP capabilities to mitigate new risks."
+        }
+    ]
+}

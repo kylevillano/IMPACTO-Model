@@ -1,0 +1,122 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Cybersecurity Investment Roadmap Schema (IMPACTO Model v0.1)",
+    "description": "JSON schema defining the structure of a cybersecurity service investment roadmap. This schema captures planned security milestones (e.g., training, exercises, reviews) on a timeline, maturity assessments, and conditional (trigger-based) recommendations for adjusting the roadmap.",
+    "type": "object",
+    "properties": {
+        "model_version": {
+            "type": "string",
+            "description": "Version of the IMPACTO model schema. For v0.1, use \"0.1\"."
+        },
+        "service_name": {
+            "type": "string",
+            "description": "Name of the security service or product (e.g., \"AppGate SDP\")."
+        },
+        "organization": {
+            "type": "string",
+            "description": "Name of the organization or unit using this roadmap."
+        },
+        "milestones": {
+            "type": "array",
+            "description": "List of planned or completed security improvement milestones with schedule and details.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Brief title of the milestone (e.g., \"Admin Training\", \"Tabletop Exercise\")."
+                    },
+                    "timeline": {
+                        "type": "string",
+                        "description": "Scheduled time frame for the milestone (could be a quarter or month, e.g., \"2024 Q1\" or \"Jan 2024\")."
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "Type of activity (e.g., \"Training\", \"Exercise\", \"Integration\", \"Review\", \"Assessment\")."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Detailed description of the milestone, including its purpose."
+                    },
+                    "outcome": {
+                        "type": "string",
+                        "description": "Expected or achieved outcome of this milestone (e.g., skills gained, issues found, risk reduced)."
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status of the milestone (e.g., planned, in-progress, completed).",
+                        "enum": [
+                            "planned",
+                            "in-progress",
+                            "completed"
+                        ]
+                    }
+                },
+                "required": [
+                    "name",
+                    "timeline",
+                    "category",
+                    "description",
+                    "outcome",
+                    "status"
+                ]
+            }
+        },
+        "maturity_assessment": {
+            "type": "object",
+            "description": "Maturity level assessment for the security capability, before and target after implementing the roadmap.",
+            "properties": {
+                "initial_level": {
+                    "type": "integer",
+                    "description": "Initial maturity level or score at start (e.g., 1-5 scale, 5 being most mature).",
+                    "minimum": 1,
+                    "maximum": 5
+                },
+                "target_level": {
+                    "type": "integer",
+                    "description": "Target maturity level or score to achieve after executing the roadmap.",
+                    "minimum": 1,
+                    "maximum": 5
+                },
+                "framework": {
+                    "type": "string",
+                    "description": "Optional name of maturity model or framework used (e.g., CMMC, NIST CSF, internal scoring)."
+                }
+            },
+            "required": [
+                "initial_level",
+                "target_level"
+            ]
+        },
+        "conditional_recommendations": {
+            "type": "array",
+            "description": "List of AI-assisted conditional recommendations. Each item defines a trigger condition and a recommended action if that condition occurs.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "trigger": {
+                        "type": "string",
+                        "description": "Description of the event/condition that would trigger this recommendation (e.g., \"High number of access violations\")."
+                    },
+                    "recommendation": {
+                        "type": "string",
+                        "description": "Suggested action to take if the trigger condition occurs (e.g., \"Conduct additional staff training\")."
+                    },
+                    "rationale": {
+                        "type": "string",
+                        "description": "Explanation of why this recommendation is important if the trigger occurs."
+                    }
+                },
+                "required": [
+                    "trigger",
+                    "recommendation"
+                ]
+            }
+        }
+    },
+    "required": [
+        "model_version",
+        "service_name",
+        "milestones"
+    ]
+}

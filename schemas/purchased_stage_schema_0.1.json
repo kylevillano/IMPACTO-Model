@@ -1,0 +1,160 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Purchased Stage Data Schema (IMPACTO Model v0.1)",
+    "description": "JSON schema defining the structure of the 'purchased' stage data for a cybersecurity investment. Captures capabilities of the purchased solution, the risk posture before and expected after implementation, operating context, and initial AI recommendations.",
+    "type": "object",
+    "properties": {
+        "model_version": {
+            "type": "string",
+            "description": "Version of the IMPACTO model schema (\"0.1\" for this version)."
+        },
+        "service_name": {
+            "type": "string",
+            "description": "Name of the security service or product that has been purchased."
+        },
+        "organization": {
+            "type": "string",
+            "description": "Organization or department implementing this service."
+        },
+        "purchase_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date (or date-time) when the service/product was purchased. (Format: YYYY-MM-DD)"
+        },
+        "capabilities": {
+            "type": "array",
+            "description": "Key capabilities/features of the purchased solution and their planned usage status.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the capability or feature (e.g., \"Dynamic Posture Management\")."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "What the capability does or enables."
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Deployment status of this capability in the organization (e.g., enabled, planned).",
+                        "enum": [
+                            "enabled",
+                            "planned",
+                            "not-applicable"
+                        ]
+                    }
+                },
+                "required": [
+                    "name",
+                    "description",
+                    "status"
+                ]
+            }
+        },
+        "initial_risk_score": {
+            "type": "integer",
+            "description": "Risk score or level **before** this solution is implemented (higher = more risk). For example, 8 on a 1-10 scale.",
+            "minimum": 0,
+            "maximum": 10
+        },
+        "expected_risk_score": {
+            "type": "integer",
+            "description": "Expected risk score **after** the solution is fully implemented (residual risk). For example, 4 on a 1-10 scale.",
+            "minimum": 0,
+            "maximum": 10
+        },
+        "operating_context": {
+            "type": "object",
+            "description": "Contextual factors about the environment where this solution operates (to inform planning).",
+            "properties": {
+                "environment": {
+                    "type": "string",
+                    "description": "Environment/architecture (e.g., \"Hybrid cloud with on-prem data centers\")."
+                },
+                "user_count": {
+                    "type": "integer",
+                    "description": "Number of users/accounts that will be protected or affected by this solution."
+                },
+                "user_types": {
+                    "type": "string",
+                    "description": "Types of users (e.g., employees, contractors, third-parties) if relevant."
+                },
+                "compliance_requirements": {
+                    "type": "array",
+                    "description": "Relevant compliance or regulatory standards that affect configuration (e.g., HIPAA, CJIS).",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "environment",
+                "user_count"
+            ]
+        },
+        "maturity": {
+            "type": "object",
+            "description": "Current and target cybersecurity maturity levels at this stage.",
+            "properties": {
+                "current_level": {
+                    "type": "integer",
+                    "description": "Current maturity level at time of purchase (e.g., 1-5 scale).",
+                    "minimum": 1,
+                    "maximum": 5
+                },
+                "target_level": {
+                    "type": "integer",
+                    "description": "Target maturity level to reach after implementing this solution and associated roadmap.",
+                    "minimum": 1,
+                    "maximum": 5
+                },
+                "model": {
+                    "type": "string",
+                    "description": "Optional maturity model name or description (e.g., \"Internal scale 1-5\")."
+                }
+            },
+            "required": [
+                "current_level",
+                "target_level"
+            ]
+        },
+        "AI_recommendations": {
+            "type": "array",
+            "description": "Initial AI-assisted recommendations generated at purchase time. These guide the creation of the roadmap.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "area": {
+                        "type": "string",
+                        "description": "Area of recommendation (e.g., training, feature, integration)."
+                    },
+                    "recommendation": {
+                        "type": "string",
+                        "description": "The recommended action or next step (e.g., \"Provide specialized admin training on new tool\")."
+                    },
+                    "trigger": {
+                        "type": "string",
+                        "description": "The reason or context for this recommendation (e.g., \"New tool unfamiliar to staff\")."
+                    },
+                    "priority": {
+                        "type": "string",
+                        "description": "Priority level for this recommendation (e.g., High, Medium, Low)."
+                    }
+                },
+                "required": [
+                    "recommendation"
+                ]
+            }
+        }
+    },
+    "required": [
+        "model_version",
+        "service_name",
+        "capabilities",
+        "initial_risk_score",
+        "expected_risk_score",
+        "operating_context",
+        "maturity"
+    ]
+}
