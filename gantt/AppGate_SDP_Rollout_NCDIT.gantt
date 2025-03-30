@@ -1,0 +1,94 @@
+{
+  "data": [
+    {
+      "TaskID": 1,
+      "TaskName": "Admin & Security Staff Training",
+      "StartDate": "2024-01-01",
+      "EndDate": "2024-03-31",
+      "Duration": 91,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 2,
+      "TaskName": "Enable Device Posture Checks",
+      "StartDate": "2024-04-01",
+      "EndDate": "2024-06-30",
+      "Duration": 91,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 3,
+      "TaskName": "Threat Intelligence Feed Integration",
+      "StartDate": "2024-07-01",
+      "EndDate": "2024-09-30",
+      "Duration": 92,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 4,
+      "TaskName": "Tabletop Security Drill",
+      "StartDate": "2024-10-01",
+      "EndDate": "2024-12-31",
+      "Duration": 92,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 5,
+      "TaskName": "Configuration Audit & Policy Tuning",
+      "StartDate": "2025-01-01",
+      "EndDate": "2025-03-31",
+      "Duration": 90,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [],
+      "info": "",
+      "DurationUnit": "day"
+    },
+    {
+      "TaskID": 6,
+      "TaskName": "Maturity Assessment & Next Steps",
+      "StartDate": "2025-04-01",
+      "EndDate": "2025-06-30",
+      "Duration": 91,
+      "Progress": 0,
+      "color": "",
+      "Predecessor": "",
+      "resources": [],
+      "info": "",
+      "DurationUnit": "day"
+    }
+  ],
+  "resources": [],
+  "advanced": {
+    "workWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ]
+  }
+}
